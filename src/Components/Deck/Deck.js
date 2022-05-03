@@ -27,7 +27,7 @@ const Deck = () => {
       deck[location1] = deck[location2];
       deck[location2] = tmp;
     }
-    console.log(deck);
+    // console.log(deck);
   }
 
 
