@@ -27,25 +27,28 @@ const Deck = () => {
       deck[location1] = deck[location2];
       deck[location2] = tmp;
     }
-    // console.log(deck);
+    // console.log(deck)
+    // return deck;
   }
 
-
-
+  useEffect(() => {
+  }, [deck])
+  
   getDeck();
+  shuffleDeck();
   return (
     <div className='deck-container'>
       <p>Is the deck ready?</p>
       <button onClick={shuffleDeck}>Check Deck</button> {/* This will shuffle the deck */}
       {player1Hand}
-      {/* {deck.map((card) => (
+      {deck.map((card) => (
         <div className="card">
           <div>
             {card.value}
           </div>
           <div>{card.suit}</div>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }
