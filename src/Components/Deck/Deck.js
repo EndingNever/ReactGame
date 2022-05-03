@@ -29,14 +29,18 @@ const Deck = (props) => {
     }
   }
 
+   useEffect(()=>{
+    //  getDeck();
+    //  shuffleDeck();
+  }, [])
     getDeck();
     shuffleDeck();
 
   return (
-    <div className='deck-container'>
+    <div  className='deck-container'>
       <p>Is the deck ready?</p>
-      <button >Check Deck</button> 
-      {deck.map((card)=>(
+      <button onClick={()=>console.log(deck.length)}>Check Deck</button>
+      {deck.map((card) => (
         <div>
           {card.value}
           {card.suit}
