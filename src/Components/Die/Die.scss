@@ -1,0 +1,30 @@
+.diceContainer{
+  // border: 2px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 60vh;
+  .die{
+    font-size: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.47);
+  }
+}
+
+.rollContainer{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  button{
+    padding: 10px 15px;
+  }
+}
