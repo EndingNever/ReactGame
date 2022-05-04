@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PlayField from '../PlayField/PlayField';
 import "./Deck.scss"
 
 const Deck = (props) => {
@@ -7,19 +8,29 @@ const Deck = (props) => {
   const deck = props.deck;
   const suits = ["spades", "diamonds", "clubs", "hearts"];
   const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-  const [player1Hand, setPlayer1Hand] = useState([])
-  const player2Hand = [];
+  const [setupCards, setSetupCards]=useState([]);
+  const [player1Hand, setPlayer1Hand] = useState([]);
+  const [player2Hand, setPlayer2Hand] = useState([]);
 
   // const deck = new Array();
 
-  const dealPlayerHand = (deck, playerHand) => {
-    if (player1Hand.length < 1) {
 
+  const dealPlayerHand = (deck) => {
+    if (player1Hand.length < 1) {
       for (let i = 0; i < 7; i++) {
         const shift = deck.shift();
         setPlayer1Hand(oldArray => [...oldArray, shift]);
       }
-      return playerHand
+    }
+    if (player2Hand.length < 1) {
+      for (let i = 0; i < 7; i++) {
+        const shift = deck.shift();
+        setPlayer2Hand(oldArray => [...oldArray, shift]);
+      }
+    }
+    for(let i = 0; i<4; i++) {
+      const shift = deck.shift();
+      setSetupCards(oldArray=>[...oldArray, shift]);
     }
   }
 
@@ -48,7 +59,7 @@ const Deck = (props) => {
   //   }
   // }
 
-
+console.log( setupCards)
 
   // getDeck();
   // shuffleDeck();
@@ -56,20 +67,31 @@ const Deck = (props) => {
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayer1}>PlayerHand</button>
-      <p>The deck has {deck.length} cards</p>
+     {/*  <p>The deck has {deck.length} cards</p>
       <p>Player 1 has {player1Hand.length} cards</p>
       {player1Hand.length > 1 && player1Hand.map((card, index) => (
         <>
           <div key={index}>
             <p>
               {card.value}
-            </p>
-            <p>
               {card.suit}
             </p>
           </div>
         </>
       ))}
+      <p>Player 2 has {player2Hand.length} cards</p>
+      {player2Hand.length > 1 && player2Hand.map((card, index) => (
+        <>
+          <div key={index}>
+            <p>
+              {card.value}
+              {card.suit}
+            </p>
+          </div>
+        </>
+      ))}
+      {setupCards.length} */}
+      <PlayField setupCards={setupCards}/>
       {/* {props.deck.length > 0 ? props.deck.map((card, index)=>(  
         <div key={index}>
         {card.value}

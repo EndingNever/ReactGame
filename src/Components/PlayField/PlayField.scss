@@ -1,0 +1,41 @@
+.playfield-container{
+  border: 2px solid red;
+  min-width: 800px;
+  max-width: 1500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  .starter-card, .deck{
+    height: 100px;
+    width: 50px;
+    border: 2px solid green;
+  }
+  .deck{
+    position: relative;
+    bottom: 50px;
+  }
+  .card-0{
+    border: 2px solid red;
+    position: relative;
+    bottom: 80px;
+  }
+  .card-1{
+    border: 2px solid orange;
+    top: 380px;
+    position: absolute;
+  }
+  .card-2{
+    border: 2px solid purple;
+    position: absolute;
+    right: 30%;
+    transform: rotate(-90deg);
+  }
+  .card-3{
+    border: 2px solid yellow;
+    position: absolute;
+    left: 30%;
+    transform: rotate(90deg);
+  }
+}
