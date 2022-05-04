@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Deck.scss"
 
 const Deck = (props) => {
@@ -7,24 +7,26 @@ const Deck = (props) => {
   const deck = props.deck;
   const suits = ["spades", "diamonds", "clubs", "hearts"];
   const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-  const player1Hand = [];
+  const [player1Hand, setPlayer1Hand] = useState([])
   const player2Hand = [];
 
   // const deck = new Array();
 
-const dealPlayerHand = (deck, playerHand) => {
-  for (let i = 0; i < 7;i++){
-    const shift = deck.shift();
-    playerHand.push(shift);
-  }
-  return playerHand
-}
+  const dealPlayerHand = (deck, playerHand) => {
+    if (player1Hand.length < 1) {
 
-const dealPlayer1=()=>{
-  dealPlayerHand(deck,player1Hand);
-  console.log(player1Hand)
-  console.log(deck);
-}
+      for (let i = 0; i < 7; i++) {
+        const shift = deck.shift();
+        setPlayer1Hand(oldArray => [...oldArray, shift]);
+      }
+      return playerHand
+    }
+  }
+
+  const dealPlayer1 = () => {
+    dealPlayerHand(deck, player1Hand);
+    console.log(deck);
+  }
 
   // const getDeck = () => {
   //   for (let i = 0; i < suits.length; i++) {
@@ -56,7 +58,19 @@ const dealPlayer1=()=>{
       <button onClick={dealPlayer1}>PlayerHand</button>
       <p>The deck has {deck.length} cards</p>
       <p>Player 1 has {player1Hand.length} cards</p>
-       {/* {props.deck.length > 0 ? props.deck.map((card, index)=>(  
+      {player1Hand.length > 1 && player1Hand.map((card, index) => (
+        <>
+          <div key={index}>
+            <p>
+              {card.value}
+            </p>
+            <p>
+              {card.suit}
+            </p>
+          </div>
+        </>
+      ))}
+      {/* {props.deck.length > 0 ? props.deck.map((card, index)=>(  
         <div key={index}>
         {card.value}
         </div>
