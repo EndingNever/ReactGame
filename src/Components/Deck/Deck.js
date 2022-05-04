@@ -28,16 +28,19 @@ const Deck = (props) => {
         setPlayer2Hand(oldArray => [...oldArray, shift]);
       }
     }
+  }
+
+  const dealPlayer1 = () => {
+    dealPlayerHand(deck);
+  }
+
+  const dealSetupCards = ()=>{
     for(let i = 0; i<4; i++) {
       const shift = deck.shift();
       setSetupCards(oldArray=>[...oldArray, shift]);
     }
   }
 
-  const dealPlayer1 = () => {
-    dealPlayerHand(deck, player1Hand);
-    console.log(deck);
-  }
 
   // const getDeck = () => {
   //   for (let i = 0; i < suits.length; i++) {
@@ -59,7 +62,10 @@ const Deck = (props) => {
   //   }
   // }
 
-console.log( setupCards)
+
+  console.log(player1Hand)
+  console.log(player2Hand)
+console.log(setupCards)
 
   // getDeck();
   // shuffleDeck();
@@ -67,6 +73,7 @@ console.log( setupCards)
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayer1}>PlayerHand</button>
+      <button onClick={dealSetupCards}>Deal Setup</button>
      {/*  <p>The deck has {deck.length} cards</p>
       <p>Player 1 has {player1Hand.length} cards</p>
       {player1Hand.length > 1 && player1Hand.map((card, index) => (
