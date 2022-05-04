@@ -6,11 +6,8 @@ import Die from './Components/Die/Die';
 function App() {
   const suits = ["spades", "diamonds", "clubs", "hearts"];
   const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-  // const player1Hand = [];
-  // const player2Hand = [];
 
   const deck = new Array();
-  // // const [stateDeck, setStateDeck] = useState([])
 
   const getDeck = () => {
     for (let i = 0; i < suits.length; i++) {
@@ -19,7 +16,6 @@ function App() {
         deck.push(card);
       }
     }
-    // setStateDeck(oldArray => [...oldArray, deck])
   }
 
   const shuffleDeck = () => {
