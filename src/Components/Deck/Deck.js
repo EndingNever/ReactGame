@@ -30,21 +30,20 @@ const Deck = (props) => {
   }
 
   const dealPlayers = () => { // This is so I can deal the players on call
-    dealPlayerHand(deck);
+    dealPlayerHand(deck); // Calls the dealPlayerHand function and passes through props.deck
   }
 
   const dealSetupCards = () => {
-    if(setupCards.length < 4){
-
+    if(setupCards.length < 4){ // Checks to see if the array of setupCards has less than 4, otherwise the setup cards have already been dealt
       for (let i = 0; i < 4; i++) {
-        const shift = deck.shift();
-        setSetupCards(oldArray => [...oldArray, shift]);
+        const shift = deck.shift(); // Draws 4 cards from the shuffled deck
+        setSetupCards(oldArray => [...oldArray, shift]); // pushes the cards to the setupCards array
       }
     } else{
-      console.log("setup cards are out")
+      console.log("setup cards are out") // If setupCards.length > 4, that means cards have already been setup
     }
   }
-  
+
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
