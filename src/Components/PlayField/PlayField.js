@@ -12,6 +12,10 @@ export default function PlayField(props) {
         </>
       ))}
       <div className="deck">Deck</div>
+      <div className="card-king king-0">King</div>
+      <div className="card-king king-1">King</div>
+      <div className="card-king king-2">King</div>
+      <div className="card-king king-3">King</div>
     </div>
   )
 }
