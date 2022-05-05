@@ -11,7 +11,7 @@ const Deck = (props) => {
 
 
 
-  const dealPlayerHand =(deck)=>{ // This function takes an array (deck) which in this case will also be called deck
+  const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
       for (let i = 0; i < 7; i++) { // i < 7 because the player gets 7 cards
         const shift = deck.shift(); // Mutate the array by removing the first element
@@ -34,12 +34,12 @@ const Deck = (props) => {
   }
 
   const dealSetupCards = () => {
-    if(setupCards.length < 4){ // Checks to see if the array of setupCards has less than 4, otherwise the setup cards have already been dealt
+    if (setupCards.length < 4) { // Checks to see if the array of setupCards has less than 4, otherwise the setup cards have already been dealt
       for (let i = 0; i < 4; i++) {
         const shift = deck.shift(); // Draws 4 cards from the shuffled deck
         setSetupCards(oldArray => [...oldArray, shift]); // pushes the cards to the setupCards array
       }
-    } else{
+    } else {
       console.log("setup cards are out") // If setupCards.length > 4, that means cards have already been setup
     }
   }

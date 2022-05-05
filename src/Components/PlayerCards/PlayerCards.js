@@ -14,6 +14,8 @@ export default function PlayerCards(props) {
             <div key={index}>
               <p>
                 {card.value}
+              </p>
+              <p>
                 {card.suit}
               </p>
             </div>
@@ -27,6 +29,8 @@ export default function PlayerCards(props) {
             <div key={index}>
               <p>
                 {card.value}
+              </p>
+              <p>
                 {card.suit}
               </p>
             </div>

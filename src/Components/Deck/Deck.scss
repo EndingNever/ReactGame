@@ -5,19 +5,4 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
-  .card {
-    border: 2px solid red;
-    // position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    width: 150px;
-    .value{
-      border: 2px solid green;
-      // margin: auto;
-    }
-  }
 }
