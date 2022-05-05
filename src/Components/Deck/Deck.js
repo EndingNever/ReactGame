@@ -91,17 +91,6 @@ const Deck = (props) => {
     dealSDeck();
   }
 
-  //TODO Following function is based on dealSetupCards above, may remove 
-  // const setDecks = (arr) => { 
-  //   if (setupCards.length === 0) {
-  //     dealSetupCards();
-  //   }
-  //   if (arr.length < 1) {
-  //     const shift = deck.shift();
-  //     arr(oldArray => [...oldArray, shift]);
-  //   }
-  // }
-
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
