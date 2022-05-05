@@ -1,13 +1,16 @@
 .playerCards-container {
-  border: 2px solid red;
   display: flex;
   .allPlayers{
     margin: 20px;
+    .card-holder{
+      border: 2px solid green;
+      margin-bottom: 8px;
+    }
   }
   .player1 {
-    border: 2px solid green;
+    border: 1px solid black;
   }
   .player2 {
-    border: 2px solid green;
+    border: 1px solid black;
   }
 }

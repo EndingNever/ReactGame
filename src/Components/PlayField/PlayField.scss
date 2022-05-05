@@ -49,30 +49,30 @@
   }
   .king-0{
     position: absolute;
-    left: 40%;
+    left: 540px;
     transform: rotate(130deg);
     top: 150px;
     // border: 2px solid red;
   }
   .king-1{
         position: absolute;
-        right: 40%;
-        top: 20%;
+        right: 540px;
+        top: 150px;
         transform: rotate(-130deg);
         // border: 2px solid orange;
   }
   .king-2{
     position: absolute;
-   top: 50%;
-   left: 40%;
+   top: 370px;
+   left: 540px;
    transform: rotate(40deg);
   //  border: 2px solid purple;
   }
   .king-3{
     position: absolute;
     transform: rotate(-40deg);
-    top: 50%;
-    right: 40%;
+    top: 370px;
+    right: 540px;
     // border: 2px solid yellow;
   }
 }

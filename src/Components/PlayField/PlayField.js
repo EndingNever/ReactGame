@@ -8,7 +8,7 @@ export default function PlayField(props) {
     <div className='playfield-container'>
       {setupCards.map((card, index) => (
         <>
-          <div className={`starter-card card-${index}`} >{card.value}</div>
+          <div value={card.value} className={`starter-card card-${index}`} >{card.value}</div>
         </>
       ))}
       <div className="deck">Deck</div>
