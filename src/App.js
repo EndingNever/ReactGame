@@ -32,7 +32,6 @@ function App() {
   useEffect(()=>{
     getDeck();
     shuffleDeck();
-    console.log(deck);
  }, [])
 
   return (

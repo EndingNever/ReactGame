@@ -1,4 +1,4 @@
-.playfield-container{
+.playfield-container {
   border: 2px solid red;
   min-width: 800px;
   max-width: 1500px;
@@ -7,7 +7,8 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  .starter-card, .deck{
+  .starter-card,
+  .deck {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,64 +16,71 @@
     width: 50px;
     background-color: white;
   }
-  .deck{
+  .deck {
     position: absolute;
     // bottom: 50px;
     border: 2px solid green;
   }
-  .card-0{
+  .card-0 {
     border: 2px solid red;
     position: relative;
     bottom: 120px;
   }
-  .card-1{
+  .card-1 {
     border: 2px solid orange;
-    top: 380px;
-    position: absolute;
-  }
-  .card-2{
-    border: 2px solid purple;
     position: absolute;
     right: 35%;
     transform: rotate(-90deg);
   }
-  .card-3{
+  .card-2 {
+    border: 2px solid purple;
+    position: absolute;
+    top: 380px;
+  }
+  .card-3 {
     border: 2px solid yellow;
     position: absolute;
     left: 35%;
     transform: rotate(90deg);
   }
-  .card-king{
+  .card-king {
     width: 50px;
     height: 100px;
     border: 1px solid black;
   }
-  .king-0{
+  .king-0 {
     position: absolute;
     left: 540px;
     transform: rotate(130deg);
     top: 150px;
     // border: 2px solid red;
   }
-  .king-1{
-        position: absolute;
-        right: 540px;
-        top: 150px;
-        transform: rotate(-130deg);
-        // border: 2px solid orange;
-  }
-  .king-2{
+  .king-1 {
     position: absolute;
-   top: 370px;
-   left: 540px;
-   transform: rotate(40deg);
-  //  border: 2px solid purple;
+    right: 540px;
+    top: 150px;
+    transform: rotate(-130deg);
+    // border: 2px solid orange;
   }
-  .king-3{
+  .king-2 {
     position: absolute;
     transform: rotate(-40deg);
     top: 370px;
     right: 540px;
+    //  border: 2px solid purple;
+  }
+  .king-3 {
+    position: absolute;
+
+    top: 370px;
+    left: 540px;
+    transform: rotate(40deg);
     // border: 2px solid yellow;
+  }
+  .setup-spot{
+    background-color: rgba(11, 38, 39, 0.644);
+    height: 100px;
+    width: 50px;
+    border: none;
   }
 }

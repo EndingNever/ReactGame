@@ -8,7 +8,7 @@ const Deck = (props) => {
   const [setupCards, setSetupCards] = useState([]);
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
-
+  const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
 
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
@@ -49,8 +49,8 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealSetupCards}>Deal Setup</button>
-      <PlayField setupCards={setupCards} />
-      <PlayerCards player1Hand={player1Hand} player2Hand={player2Hand} />
+      <PlayField playerSelectedCard={playerSelectedCard} setupCards={setupCards} />
+      <PlayerCards {...{player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard}} />
     </div>
   );
 }
