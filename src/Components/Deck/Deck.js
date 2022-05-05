@@ -89,7 +89,6 @@ const Deck = (props) => {
     dealWDeck();
     dealEDeck();
     dealSDeck();
-    console.log(NDeck, EDeck, WDeck, SDeck)
   }
 
   //TODO Following function is based on dealSetupCards above, may remove 

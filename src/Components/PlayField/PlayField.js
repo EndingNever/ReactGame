@@ -8,7 +8,6 @@ export default function PlayField(props) {
   const WDeck = props.WDeck;
 
   const playerSelectedCard = props.playerSelectedCard
-  console.log(NDeck)
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
@@ -36,20 +35,20 @@ export default function PlayField(props) {
         <>
           <div value={card.value} className={`starter-card card-${index}`} >{card.value}</div>
         </>
-      ))}
-      {setupCards.length < 1 &&
+      ))}*/}
+      {NDeck.length < 1 &&
         <>
-          <div className="setup-spot starter-card card-0">0</div>
-          <div className="setup-spot starter-card card-1">1</div>
-          <div className="setup-spot starter-card card-2">2</div>
-          <div className="setup-spot starter-card card-3">3</div>
+          <div className="setup-spot starter-card card-0">Empty</div>
+          <div className="setup-spot starter-card card-1">Empty</div>
+          <div className="setup-spot starter-card card-2">Empty</div>
+          <div className="setup-spot starter-card card-3">Empty</div>
         </>
-      } */}
+      } 
       <div className="deck">Deck</div>
-      <div className="starter-card card-king king-0">King goes here</div>
-      <div className="starter-card card-king king-1">King goes here</div>
-      <div className="starter-card card-king king-2">King goes here</div>
-      <div className="starter-card card-king king-3">King goes here</div>
+      <div className="starter-card card-king setup-king king-0">King goes here</div>
+      <div className="starter-card card-king setup-king king-1">King goes here</div>
+      <div className="starter-card card-king setup-king king-2">King goes here</div>
+      <div className="starter-card card-king setup-king king-3">King goes here</div>
     </div>
   )
 }
