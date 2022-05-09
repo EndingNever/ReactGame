@@ -5,7 +5,6 @@ import "./Deck.scss"
 
 const Deck = (props) => {
   const deck = props.deck;
-  const [setupCards, setSetupCards] = useState([]);
   const [NDeck, setNDeck] = useState([]);
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
@@ -78,7 +77,7 @@ const Deck = (props) => {
     dealEDeck();
     dealSDeck();
   }
-
+  
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
@@ -86,7 +85,8 @@ const Deck = (props) => {
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
       <PlayField setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck}
       />
-      <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} />
+      {/* <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} /> */}
+      <PlayerCards player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );
 }

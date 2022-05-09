@@ -6,30 +6,40 @@ export default function PlayField(props) {
   const EDeck = props.EDeck;
   const SDeck = props.SDeck;
   const WDeck = props.WDeck;
-  const setNDeck = props.setNDeck
-  const setEDeck = props.setEDeck
-  const setSDeck = props.setSDeck
-  const setWDeck = props.setWDeck
-  const playerSelectedCard = props.playerSelectedCard
+  const setNDeck = props.setNDeck;
+  const setEDeck = props.setEDeck;
+  const setSDeck = props.setSDeck;
+  const setWDeck = props.setWDeck;
+  const playerSelectedCard = props.playerSelectedCard;
   const setPlayerSelectedCard = props.setPlayerSelectedCard;
 
-  console.log(playerSelectedCard)
+  // console.log(NDeck)
 
   const onClickDeck = (data) => {
     const classListWithDeck = data.target.classList[2];
     if (playerSelectedCard.length > 0) {
       if (classListWithDeck == "NDeck") {
-        setNDeck(oldArray => [...oldArray, playerSelectedCard])
+        setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
+        console.log(NDeck);
       } else if (classListWithDeck == "EDeck") {
-        console.log("EDeck class list");
+        setEDeck(oldArray => oldArray.concat(playerSelectedCard));
+        setPlayerSelectedCard([]);
+        console.log(EDeck);
       } else if (classListWithDeck == "SDeck") {
-        console.log("SDeck class list");
+        setSDeck(oldArray => oldArray.concat(playerSelectedCard));
+        setPlayerSelectedCard([]);
+        console.log(SDeck);
       } else if (classListWithDeck == "WDeck") {
-        console.log("WDeck class list");
+        setWDeck(oldArray => oldArray.concat(playerSelectedCard));
+        setPlayerSelectedCard([]);
+        console.log(WDeck);
       }
+    } else{
+      console.log("PSC IS LESS THAN 0")
     }
   }
+
 
   return (
     <div className='playfield-container'>

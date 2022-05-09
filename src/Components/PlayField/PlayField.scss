@@ -2,7 +2,8 @@
   border: 2px solid red;
   min-width: 800px;
   max-width: 1500px;
-  height: 500px;
+  min-height: 800px;
+  max-height: 1500px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -15,11 +16,9 @@
     height: 100px;
     width: 50px;
     background-color: white;
-  }
-  .deck {
     position: absolute;
-    // bottom: 50px;
     border: 2px solid green;
+    text-align: center;
   }
   .card-0 {
     border: 2px solid red;
@@ -35,7 +34,7 @@
   .card-2 {
     border: 2px solid purple;
     position: absolute;
-    top: 380px;
+    top: 540px;
   }
   .card-3 {
     border: 2px solid yellow;
@@ -56,27 +55,26 @@
     position: absolute;
     left: 540px;
     transform: rotate(130deg);
-    top: 150px;
+    top: 305px;
     // border: 2px solid red;
   }
   .king-1 {
     position: absolute;
     right: 540px;
-    top: 150px;
+    top: 305px;
     transform: rotate(-130deg);
     // border: 2px solid orange;
   }
   .king-2 {
     position: absolute;
     transform: rotate(-40deg);
-    top: 370px;
+    top: 530px;
     right: 540px;
     //  border: 2px solid purple;
   }
   .king-3 {
     position: absolute;
-
-    top: 370px;
+    top: 530px;
     left: 540px;
     transform: rotate(40deg);
     // border: 2px solid yellow;

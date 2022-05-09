@@ -4,8 +4,8 @@ import "./PlayerCards.scss"
 export default function PlayerCards(props) {
   const player1Hand = props.player1Hand;
   const player2Hand = props.player2Hand;
-  const playerSelectedCard = props.playerSelectedCard
-  const setPlayerSelectedCard = props.setPlayerSelectedCard
+  const playerSelectedCard = props.playerSelectedCard;
+  const setPlayerSelectedCard = props.setPlayerSelectedCard;
 
   const onClickUserCard = (data) => {
     // console.log(player1Hand.indexOf(found)); // This will display the indexOf any Kings we have in our player1hand
@@ -18,13 +18,13 @@ export default function PlayerCards(props) {
     const indexOfCard = player1Hand.indexOf(valueFound)
     // console.log(player1Hand.splice(indexOfCard, indexOfCard+1));
     const slice = player1Hand.slice(indexOfCard, indexOfCard+1);
-    if (playerSelectedCard.length < 1) {
-      setPlayerSelectedCard(oldArray => [...oldArray, slice])
-    } else{
-      console.log('playerSelectedCard has 1 card already');
-    }
-    // console.log(slice);
+    // if (playerSelectedCard.length < 1) {
+      setPlayerSelectedCard(slice)
+    // } else{
+    //   // console.log('playerSelectedCard has 1 card already');
+    // }
     console.log(playerSelectedCard)
+    // console.log(playerSelectedCard)
     // console.log(player1Hand)
     //? console.log(data.target.childNodes[0].data); // Value
     //? console.log(data.target.childNodes[2].data); // Suit
