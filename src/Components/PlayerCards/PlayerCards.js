@@ -8,8 +8,10 @@ export default function PlayerCards(props) {
   const setPlayerSelectedCard = props.setPlayerSelectedCard
 
   const onClickUserCard = (data) => {
+    const found = player1Hand.find(x => x.value === "K") //this will search through player1Hand and find the location of x.value === "K" (x.suit also available)
+    console.log(player1Hand.indexOf(found)); // This will display the indexOf any Kings we have in our player1hand
     // console.log(data.target.innerHTML);
-    setPlayerSelectedCard(data.target.innerHTML)
+    // setPlayerSelectedCard(data.target.innerHTML)
   }
 
   

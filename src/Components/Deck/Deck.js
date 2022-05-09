@@ -37,18 +37,6 @@ const Deck = (props) => {
     dealPlayerHand(deck); // Calls the dealPlayerHand function and passes through props.deck
   }
 
-  //TODO translate to 4arrs
-  // const dealSetupCards = () => {
-  //   if (setupCards.length < 4) { // Checks to see if the array of setupCards has less than 4, otherwise the setup cards have already been dealt
-  //     for (let i = 0; i < 4; i++) {
-  //       const shift = deck.shift(); // Draws 4 cards from the shuffled deck
-  //       setSetupCards(oldArray => [...oldArray, shift]); // pushes the cards to the setupCards array
-  //     }
-  //   } else {
-  //     console.log("setup cards are out") // If setupCards.length > 4, that means cards have already been setup
-  //   }
-  // }
-
   const dealNDeck = () => {
     if (NDeck.length < 1) {
     const shift = deck.shift();

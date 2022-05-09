@@ -8,6 +8,7 @@ export default function PlayField(props) {
   const WDeck = props.WDeck;
 
   const playerSelectedCard = props.playerSelectedCard
+  
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
