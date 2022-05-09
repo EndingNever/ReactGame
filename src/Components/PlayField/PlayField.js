@@ -13,34 +13,37 @@ export default function PlayField(props) {
   const playerSelectedCard = props.playerSelectedCard;
   const setPlayerSelectedCard = props.setPlayerSelectedCard;
   const player1Hand = props.player1Hand;
-  const onClickUserCard=props.onClickUserCard;
-  const indexOfCard=props.indexOfCard;
+  const onClickUserCard = props.onClickUserCard;
+  const indexOfCard = props.indexOfCard;
 
   // console.log(NDeck)
 
-  const onClickDeck = (data) => {
+  const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
     if (playerSelectedCard.length > 0) {
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, indexOfCard+1)
+        player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(NDeck);
         // console.log(player1Hand.find(x => x.value===playerSelectedCard));
       } else if (classListWithDeck == "EDeck") {
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
+        player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(EDeck);
       } else if (classListWithDeck == "SDeck") {
         setSDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
+        player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(SDeck);
       } else if (classListWithDeck == "WDeck") {
         setWDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
+        player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(WDeck);
       }
-    } else{
+    } else {
       console.log("PSC IS LESS THAN 0")
     }
   }
@@ -49,22 +52,22 @@ export default function PlayField(props) {
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
-        <div onClick={onClickDeck} key={index} className="starter-card card-0 NDeck">
+        <div onClick={onPlaceCard} key={index} className="starter-card card-0 NDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {EDeck.map((card, index) => (
-        <div onClick={onClickDeck} key={index} className="starter-card card-1 EDeck">
+        <div onClick={onPlaceCard} key={index} className="starter-card card-1 EDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {SDeck.map((card, index) => (
-        <div onClick={onClickDeck} key={index} className="starter-card card-2 SDeck">
+        <div onClick={onPlaceCard} key={index} className="starter-card card-2 SDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {WDeck.map((card, index) => (
-        <div onClick={onClickDeck} key={index} className="starter-card card-3 WDeck">
+        <div onClick={onPlaceCard} key={index} className="starter-card card-3 WDeck">
           {card.value} {card.suit}
         </div>
       ))}
