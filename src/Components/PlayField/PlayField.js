@@ -12,6 +12,7 @@ export default function PlayField(props) {
   const setWDeck = props.setWDeck;
   const playerSelectedCard = props.playerSelectedCard;
   const setPlayerSelectedCard = props.setPlayerSelectedCard;
+  const player1Hand = props.player1Hand;
 
   // console.log(NDeck)
 
@@ -21,7 +22,7 @@ export default function PlayField(props) {
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
-        console.log(NDeck);
+        // console.log(player1Hand.find(x => x.value===playerSelectedCard));
       } else if (classListWithDeck == "EDeck") {
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
