@@ -39,7 +39,7 @@ const Deck = (props) => {
 
   const dealNDeck = () => {
     if (NDeck.length < 1) {
-    const shift = deck.shift();
+      const shift = deck.shift();
       setNDeck(oldArray => [...oldArray, shift]);
     } else {
       console.log("Setup is done")
@@ -47,7 +47,7 @@ const Deck = (props) => {
   }
   const dealWDeck = () => {
     if (WDeck.length < 1) {
-    const shift = deck.shift();
+      const shift = deck.shift();
       setWDeck(oldArray => [...oldArray, shift]);
     } else {
       console.log("Setup is done")
@@ -56,7 +56,7 @@ const Deck = (props) => {
 
   const dealEDeck = () => {
     if (EDeck.length < 1) {
-    const shift = deck.shift();
+      const shift = deck.shift();
       setEDeck(oldArray => [...oldArray, shift]);
     } else {
       console.log("Setup is done")
@@ -84,7 +84,8 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
-      <PlayField playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} />
+      <PlayField setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck}
+      />
       <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} />
     </div>
   );

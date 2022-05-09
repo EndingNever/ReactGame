@@ -6,28 +6,50 @@ export default function PlayField(props) {
   const EDeck = props.EDeck;
   const SDeck = props.SDeck;
   const WDeck = props.WDeck;
-
+  const setNDeck = props.setNDeck
+  const setEDeck = props.setEDeck
+  const setSDeck = props.setSDeck
+  const setWDeck = props.setWDeck
   const playerSelectedCard = props.playerSelectedCard
-  
+  const setPlayerSelectedCard = props.setPlayerSelectedCard;
+
+  console.log(playerSelectedCard)
+
+  const onClickDeck = (data) => {
+    const classListWithDeck = data.target.classList[2];
+    if (playerSelectedCard.length > 0) {
+      if (classListWithDeck == "NDeck") {
+        setNDeck(oldArray => [...oldArray, playerSelectedCard])
+        setPlayerSelectedCard([]);
+      } else if (classListWithDeck == "EDeck") {
+        console.log("EDeck class list");
+      } else if (classListWithDeck == "SDeck") {
+        console.log("SDeck class list");
+      } else if (classListWithDeck == "WDeck") {
+        console.log("WDeck class list");
+      }
+    }
+  }
+
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
-        <div key={index} className="starter-card card-0">
+        <div onClick={onClickDeck} key={index} className="starter-card card-0 NDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {EDeck.map((card, index) => (
-        <div key={index} className="starter-card card-1">
+        <div onClick={onClickDeck} key={index} className="starter-card card-1 EDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {SDeck.map((card, index) => (
-        <div key={index} className="starter-card card-2">
+        <div onClick={onClickDeck} key={index} className="starter-card card-2 SDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {WDeck.map((card, index) => (
-        <div key={index} className="starter-card card-3">
+        <div onClick={onClickDeck} key={index} className="starter-card card-3 WDeck">
           {card.value} {card.suit}
         </div>
       ))}
@@ -44,7 +66,7 @@ export default function PlayField(props) {
           <div className="setup-spot starter-card card-2">Empty</div>
           <div className="setup-spot starter-card card-3">Empty</div>
         </>
-      } 
+      }
       <div className="deck">Deck</div>
       <div className="starter-card card-king setup-king king-0">King goes here</div>
       <div className="starter-card card-king setup-king king-1">King goes here</div>
