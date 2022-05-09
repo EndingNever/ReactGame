@@ -12,7 +12,7 @@ const Deck = (props) => {
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
-
+const [indexOfCard, setIndexOfCard]=useState()
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
@@ -78,8 +78,18 @@ const Deck = (props) => {
     dealSDeck();
   }
 
-  const splicePlayerHand = (hand, indexOfCard, indexPlusOne) => {
-    hand.splice(indexOfCard, indexPlusOne);
+  const onClickUserCard = (data) => {
+    const cardValue = data.target.childNodes[0].data;
+    const cardSuit = data.target.childNodes[2].data;
+    const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value === "K" (x.suit also available)
+    setIndexOfCard(player1Hand.indexOf(valueFound))
+    const slice = player1Hand.slice(indexOfCard, indexOfCard+1);
+    if (playerSelectedCard.length < 1) {
+      setPlayerSelectedCard(slice)
+      // console.log(player1Hand.splice(indexOfCard, indexOfCard+1));
+    } else{
+      console.log('playerSelectedCard has 1 card already');
+    }
   }
 
   return (
@@ -87,10 +97,10 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
-      <PlayField player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck}
+      <PlayField indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck}
       />
       {/* <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} /> */}
-      <PlayerCards player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
+      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );
 }
