@@ -98,19 +98,27 @@ const Deck = (props) => {
 
   const onClickKing = (data) => {
     if (data.target.className.includes('TLKing')) {
-      if (TLKing[0].suit === undefined) {
-        if (playerSelectedCard.length > 0) {
-          if (playerSelectedCard[0].value === "K") {
+      if (TLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+        if (playerSelectedCard.length > 0) { // IF the player has selected a card
+          if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
             console.log('PSC IS A KING')
             setTLKing(playerSelectedCard)
-          } else {
+            setPlayerSelectedCard([]);            
+            player1Hand.splice(indexOfCard, indexOfCard + 1)
+            console.log("card spliced from player hand and pushed to array")
+          } else { 
             console.log("PSC IS NOT A KING")
           }
         } else {
           console.log('playerSelectedCard is empty')
         }
       } else {
-        console.log(TLKing[0].suit)
+        if(playerSelectedCard[0].value==="J"){
+          // TODO PUSH TO EXISTING ARRAY
+          setTLKing(oldArray=>oldArray.concat(playerSelectedCard))
+        } else {
+          console.log("This card cannot be pushed!")
+        }
       }
       // if (TLKing.length > 1) {
       //   console.log(TLKing.length)

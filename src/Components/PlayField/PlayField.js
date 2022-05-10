@@ -35,7 +35,6 @@ export default function PlayField(props) {
       console.log(data.target.innerHTML);
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
-        validatePlayedCard();
         setPlayerSelectedCard([]);
         player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(NDeck);
