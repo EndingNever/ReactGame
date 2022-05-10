@@ -16,8 +16,6 @@ export default function PlayField(props) {
   const onClickUserCard = props.onClickUserCard;
   const indexOfCard = props.indexOfCard;
 
-  // console.log(NDeck)
-
   const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
     if (playerSelectedCard.length > 0) {
@@ -26,7 +24,6 @@ export default function PlayField(props) {
         setPlayerSelectedCard([]);
         player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(NDeck);
-        // console.log(player1Hand.find(x => x.value===playerSelectedCard));
       } else if (classListWithDeck == "EDeck") {
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
@@ -47,6 +44,7 @@ export default function PlayField(props) {
       console.log("PSC IS LESS THAN 0")
     }
   }
+
 
 
   return (

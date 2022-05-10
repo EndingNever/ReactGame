@@ -12,7 +12,7 @@ const Deck = (props) => {
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
-const [indexOfCard, setIndexOfCard]=useState()
+  const [indexOfCard, setIndexOfCard] = useState()
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
@@ -44,14 +44,6 @@ const [indexOfCard, setIndexOfCard]=useState()
       console.log("Setup is done")
     }
   }
-  const dealWDeck = () => {
-    if (WDeck.length < 1) {
-      const shift = deck.shift();
-      setWDeck(oldArray => [...oldArray, shift]);
-    } else {
-      console.log("Setup is done")
-    }
-  }
 
   const dealEDeck = () => {
     if (EDeck.length < 1) {
@@ -71,6 +63,15 @@ const [indexOfCard, setIndexOfCard]=useState()
     }
   }
 
+  const dealWDeck = () => {
+    if (WDeck.length < 1) {
+      const shift = deck.shift();
+      setWDeck(oldArray => [...oldArray, shift]);
+    } else {
+      console.log("Setup is done")
+    }
+  }
+
   const dealFourArrs = () => {
     dealNDeck();
     dealWDeck();
@@ -81,16 +82,20 @@ const [indexOfCard, setIndexOfCard]=useState()
   const onClickUserCard = (data) => {
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
-    const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value === "K" (x.suit also available)
+    const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
     setIndexOfCard(player1Hand.indexOf(valueFound))
-    const slice = player1Hand.slice(indexOfCard, indexOfCard+1);
+    const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
     if (playerSelectedCard.length < 1) {
       setPlayerSelectedCard(slice)
-      // console.log(player1Hand.splice(indexOfCard, indexOfCard+1));
-    } else{
+    } else {
       console.log('playerSelectedCard has 1 card already');
     }
   }
+
+//? Code for King
+  // const onClickUserKing=(data)=>{
+    
+  // }
 
   return (
     <div className='deck-container'>
