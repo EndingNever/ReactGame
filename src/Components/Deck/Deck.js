@@ -98,9 +98,38 @@ const Deck = (props) => {
 
   const onClickKing = (data) => {
     if (data.target.className.includes('TLKing')) {
-      console.log("TLKing")
+      if (TLKing[0].suit === undefined) {
+        if (playerSelectedCard.length > 0) {
+          if (playerSelectedCard[0].value === "K") {
+            console.log('PSC IS A KING')
+            setTLKing(playerSelectedCard)
+          } else {
+            console.log("PSC IS NOT A KING")
+          }
+        } else {
+          console.log('playerSelectedCard is empty')
+        }
+      } else {
+        console.log(TLKing[0].suit)
+      }
+      // if (TLKing.length > 1) {
+      //   console.log(TLKing.length)
+      // } else {
+      //   console.log(" not > 1")
+      // }
+      // console.log("TLKing")
     } else if (data.target.className.includes('TRKing')) {
-      console.log("TRKing")
+      if(TRKing[0].suit===undefined) {
+        if(playerSelectedCard.length > 0) {
+          if(playerSelectedCard[0].value==="K"){
+            console.log("PSC IS A KING")
+          } else {
+            console.log("PSC IS NOT A KING")
+          }
+        } else {
+          console.log("playerSelectedCard is empty")
+        }
+      }
     } else if (data.target.className.includes('BRKing')) {
       console.log("BRKing")
     } else if (data.target.className.includes('BLKing')) {
