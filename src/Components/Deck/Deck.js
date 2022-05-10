@@ -9,10 +9,14 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
+  const [TLKing, setTLKing] = useState([])
+  const [TRKing, setTRKing] = useState([])
+  const [BRKing, setBRKing] = useState([])
+  const [BLKing, setBLKing] = useState([])
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
-  const [indexOfCard, setIndexOfCard] = useState()
+  const [indexOfCard, setIndexOfCard] = useState('')
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
@@ -82,16 +86,16 @@ const Deck = (props) => {
   const onClickUserCard = (data) => {
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
-    const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
-    setIndexOfCard(player1Hand.indexOf(valueFound))
+    // const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
+    setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value === cardValue && x.suit === cardSuit)))
     const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
-    if (playerSelectedCard.length < 1) {
+    // if (playerSelectedCard.length < 1) {
       setPlayerSelectedCard(slice)
-    } else {
-      console.log('playerSelectedCard has 1 card already');
-    }
+    // } else {
+    //   console.log('playerSelectedCard has 1 card already');
+    // }
   }
-
+  
 //? Code for King
   // const onClickUserKing=(data)=>{
     
@@ -102,8 +106,9 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
-      <PlayField indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck}
+      <PlayField indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
       />
+      {playerSelectedCard.length > 0 && <p>You are moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
       {/* <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} /> */}
       <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>

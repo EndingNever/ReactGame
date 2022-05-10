@@ -15,12 +15,26 @@ export default function PlayField(props) {
   const player1Hand = props.player1Hand;
   const onClickUserCard = props.onClickUserCard;
   const indexOfCard = props.indexOfCard;
+  const TLKing = props.TLKing
+  const TRKing = props.TRKing
+  const BRKing = props.BRKing
+  const BLKing = props.BLKing
+  const setTLKing=props.setTLKing
+  const setTRKing=props.setTRKing
+  const setBRKing=props.setBRKing
+  const setBLKing=props.setBLKing
+
+  const validatePlayedCard = (data) => {
+    console.log(data)
+  }
 
   const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
     if (playerSelectedCard.length > 0) {
+      console.log(data.target.innerHTML);
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
+        validatePlayedCard();
         setPlayerSelectedCard([]);
         player1Hand.splice(indexOfCard, indexOfCard + 1)
         console.log(NDeck);
@@ -42,6 +56,11 @@ export default function PlayField(props) {
       }
     } else {
       console.log("PSC IS LESS THAN 0")
+      console.log(data);
+      // console.log(NDeck)
+      // console.log(EDeck)
+      // console.log(SDeck)
+      // console.log(WDeck)
     }
   }
 
@@ -84,10 +103,34 @@ export default function PlayField(props) {
         </>
       }
       <div className="deck">Deck</div>
-      <div className="starter-card card-king setup-king king-0">King goes here</div>
+      {TLKing.map((card, index)=>(
+        <div key={index} className="starter-card card-king setup-king king-0">
+          {card.value} {card.suit}
+        </div>
+      ))}
+      {TRKing.map((card, index)=>(
+        <div key={index} className="starter-card card-king setup-king king-1">
+          {card.value} {card.suit}
+        </div>
+      ))}
+      {BRKing.map((card, index)=>(
+        <div key={index} className="starter-card card-king setup-king king-2">
+          {card.value} {card.suit}
+        </div>
+      ))}
+      {BLKing.map((card, index)=>(
+        <div key={index} className="starter-card card-king setup-king king-3">
+          {card.value} {card.suit}
+        </div>
+      ))}
+      {TLKing.length === 0 && <div className="starter-card card-king setup-king king-0">King goes here</div>}
+      {TRKing.length === 0 && <div className="starter-card card-king setup-king king-1">King goes here</div>}
+      {BRKing.length === 0 && <div className="starter-card card-king setup-king king-2">King goes here</div>}
+      {BLKing.length === 0 && <div className="starter-card card-king setup-king king-3">King goes here</div>}
+      {/* <div className="starter-card card-king setup-king king-0">King goes here</div>
       <div className="starter-card card-king setup-king king-1">King goes here</div>
       <div className="starter-card card-king setup-king king-2">King goes here</div>
-      <div className="starter-card card-king setup-king king-3">King goes here</div>
+      <div className="starter-card card-king setup-king king-3">King goes here</div> */}
     </div>
   )
 }
