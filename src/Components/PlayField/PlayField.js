@@ -15,14 +15,15 @@ export default function PlayField(props) {
   const player1Hand = props.player1Hand;
   const onClickUserCard = props.onClickUserCard;
   const indexOfCard = props.indexOfCard;
-  const TLKing = props.TLKing
-  const TRKing = props.TRKing
-  const BRKing = props.BRKing
-  const BLKing = props.BLKing
-  const setTLKing=props.setTLKing
-  const setTRKing=props.setTRKing
-  const setBRKing=props.setBRKing
-  const setBLKing=props.setBLKing
+  const TLKing = props.TLKing;
+  const TRKing = props.TRKing;
+  const BRKing = props.BRKing;
+  const BLKing = props.BLKing;
+  const setTLKing=props.setTLKing;
+  const setTRKing=props.setTRKing;
+  const setBRKing=props.setBRKing;
+  const setBLKing=props.setBLKing;
+  const onClickKing=props.onClickKing;
 
   const validatePlayedCard = (data) => {
     console.log(data)
@@ -55,12 +56,12 @@ export default function PlayField(props) {
         console.log(WDeck);
       }
     } else {
-      console.log("PSC IS LESS THAN 0")
-      console.log(data);
-      // console.log(NDeck)
-      // console.log(EDeck)
-      // console.log(SDeck)
-      // console.log(WDeck)
+      // console.log("PSC IS LESS THAN 0")
+      // console.log(data);
+      console.log(NDeck)
+      console.log(EDeck)
+      console.log(SDeck)
+      console.log(WDeck)
     }
   }
 
@@ -104,29 +105,29 @@ export default function PlayField(props) {
       }
       <div className="deck">Deck</div>
       {TLKing.map((card, index)=>(
-        <div key={index} className="starter-card card-king setup-king king-0">
+        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">
           {card.value} {card.suit}
         </div>
       ))}
       {TRKing.map((card, index)=>(
-        <div key={index} className="starter-card card-king setup-king king-1">
+        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-1 TRKing">
           {card.value} {card.suit}
         </div>
       ))}
       {BRKing.map((card, index)=>(
-        <div key={index} className="starter-card card-king setup-king king-2">
+        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-2 BRKing">
           {card.value} {card.suit}
         </div>
       ))}
       {BLKing.map((card, index)=>(
-        <div key={index} className="starter-card card-king setup-king king-3">
+        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-3 BLKing">
           {card.value} {card.suit}
         </div>
       ))}
-      {TLKing.length === 0 && <div className="starter-card card-king setup-king king-0">King goes here</div>}
+      {/* {TLKing.length === 0 && <div className="starter-card card-king setup-king king-0">King goes here</div>}
       {TRKing.length === 0 && <div className="starter-card card-king setup-king king-1">King goes here</div>}
       {BRKing.length === 0 && <div className="starter-card card-king setup-king king-2">King goes here</div>}
-      {BLKing.length === 0 && <div className="starter-card card-king setup-king king-3">King goes here</div>}
+      {BLKing.length === 0 && <div className="starter-card card-king setup-king king-3">King goes here</div>} */}
       {/* <div className="starter-card card-king setup-king king-0">King goes here</div>
       <div className="starter-card card-king setup-king king-1">King goes here</div>
       <div className="starter-card card-king setup-king king-2">King goes here</div>

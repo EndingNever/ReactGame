@@ -9,10 +9,10 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([])
-  const [TRKing, setTRKing] = useState([])
-  const [BRKing, setBRKing] = useState([])
-  const [BLKing, setBLKing] = useState([])
+  const [TLKing, setTLKing] = useState([{ value: "King" }])
+  const [TRKing, setTRKing] = useState([{ value: "King" }])
+  const [BRKing, setBRKing] = useState([{ value: "King" }])
+  const [BLKing, setBLKing] = useState([{ value: "King" }])
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
@@ -90,23 +90,30 @@ const Deck = (props) => {
     setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value === cardValue && x.suit === cardSuit)))
     const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
     // if (playerSelectedCard.length < 1) {
-      setPlayerSelectedCard(slice)
+    setPlayerSelectedCard(slice)
     // } else {
     //   console.log('playerSelectedCard has 1 card already');
     // }
   }
-  
-//? Code for King
-  // const onClickUserKing=(data)=>{
-    
-  // }
 
+  const onClickKing = (data) => {
+    if (data.target.className.includes('TLKing')) {
+      console.log("TLKing")
+    } else if (data.target.className.includes('TRKing')) {
+      console.log("TRKing")
+    } else if (data.target.className.includes('BRKing')) {
+      console.log("BRKing")
+    } else if (data.target.className.includes('BLKing')) {
+      console.log("BLKing")
+    }
+  }
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
       <PlayField indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+        onClickKing={onClickKing}
       />
       {playerSelectedCard.length > 0 && <p>You are moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
       {/* <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} /> */}
