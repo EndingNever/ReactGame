@@ -34,7 +34,7 @@ export default function PlayerCards(props) {
     <div className='playerCards-container'>
       <div className="allPlayers player1">
         <p>Player 1 has {player1Hand.length} cards</p>
-        {player1Hand.length > 1 && player1Hand.map((card, index) => (
+        {player1Hand.length > 0 && player1Hand.map((card, index) => (
           <>
             <div className='card-holder' key={index}>
               <p onClick={onClickUserCard}>
@@ -46,7 +46,7 @@ export default function PlayerCards(props) {
       </div>
       <div className="allPlayers player2">
         <p>Player 2 has {player2Hand.length} cards</p>
-        {player2Hand.length > 1 && player2Hand.map((card, index) => (
+        {player2Hand.length > 0 && player2Hand.map((card, index) => (
           <>
             <div className='card-holder' key={index}>
               <p onClick={onClickUserCard}>

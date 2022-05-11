@@ -13,7 +13,7 @@ const Deck = (props) => {
   const [TRKing, setTRKing] = useState([{ value: "King" }])
   const [BRKing, setBRKing] = useState([{ value: "King" }])
   const [BLKing, setBLKing] = useState([{ value: "King" }])
-  const [player1Hand, setPlayer1Hand] = useState([]);
+  const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
   const [indexOfCard, setIndexOfCard] = useState('')
@@ -87,8 +87,8 @@ const Deck = (props) => {
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
     // const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
-    setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value === cardValue && x.suit === cardSuit)))
-    const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
+    setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit)))
+    const slice = player1Hand.slice(indexOfCard, 1);
     // if (playerSelectedCard.length < 1) {
     setPlayerSelectedCard(slice)
     // } else {
@@ -175,13 +175,6 @@ const Deck = (props) => {
         } else {
           console.log("PSC is empty")
         }
-        // validateValue(playerSelectedCard, TLKing)
-        // if (playerSelectedCard[0].value === "J") {
-        //   // TODO PUSH TO EXISTING ARRAY
-        //   setTLKing(oldArray => oldArray.concat(playerSelectedCard))
-        // } else {
-        //   console.log("This card cannot be pushed!")
-        // }
       }
     } else if (data.target.className.includes('TRKing')) {
       if (TRKing[0].suit === undefined) {
