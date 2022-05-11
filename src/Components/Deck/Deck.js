@@ -96,6 +96,20 @@ const Deck = (props) => {
     // }
   }
 
+  const validateValue = (cardToDeposit, receivingCard) => {
+    // eslint-disable-next-line eqeqeq
+    if (cardToDeposit[0].value==receivingCard.value-1){
+      console.log("The card can be deposited!")
+    } else{
+      console.log("The card " + cardToDeposit[0].value + " cannot be deposited to " + receivingCard.value)
+      // console.log(receivingCard.value)
+    }
+  }
+  useEffect(()=>{
+    validateValue(playerSelectedCard, {value: 7})
+    // console.log(playerSelectedCard)
+  }, [playerSelectedCard, setPlayerSelectedCard])
+  
   const onClickKing = (data) => {
     if (data.target.className.includes('TLKing')) {
       if (TLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
