@@ -9,7 +9,7 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([{ value: "K", suit: "spades" }, { value: "Q", suit: "diamonds" }, { value: "J", suit: "diamonds" }])
+  const [TLKing, setTLKing] = useState([{ value: "King"}])
   const [TRKing, setTRKing] = useState([{ value: "King" }])
   const [BRKing, setBRKing] = useState([{ value: "King" }])
   const [BLKing, setBLKing] = useState([{ value: "King" }])
@@ -99,37 +99,37 @@ const Deck = (props) => {
   const validateValue = (cardToDeposit, receivingCard) => {
     let depositTempValue;
     let receivingTempValue;
-
-    if (cardToDeposit[0]?.value == "K") { // Change deposit value based on cardToDeposit
+    if (cardToDeposit[0]?.value === "K") { // Change deposit value based on cardToDeposit
       depositTempValue = 13;
-    } else if (cardToDeposit[0]?.value == "Q") {
+    } else if (cardToDeposit[0]?.value === "Q") {
       depositTempValue = 12;
-    } else if (cardToDeposit[0]?.value == "J") {
+    } else if (cardToDeposit[0]?.value === "J") {
       depositTempValue = 11;
-    } else if (cardToDeposit[0]?.value == "A") {
+    } else if (cardToDeposit[0]?.value === "A") {
       depositTempValue = 1;
     } else {
       depositTempValue = cardToDeposit[0]?.value;
     }
 
-    if (receivingCard?.value == "K") { // change receiving value based on receivingCard?
+    if (receivingCard?.value === "K") { // change receiving value based on receivingCard?
       receivingTempValue = 13;
-    } else if (receivingCard?.value == "Q") {
+    } else if (receivingCard?.value === "Q") {
       receivingTempValue = 12;
-    } else if (receivingCard?.value == "J") {
+    } else if (receivingCard?.value === "J") {
       receivingTempValue = 11;
-    } else if (receivingCard?.value == "A") {
+    } else if (receivingCard?.value === "A") {
       receivingTempValue = 1;
     } else {
       receivingTempValue = receivingCard?.value;
     }
-    if (receivingCard?.value - cardToDeposit[0]?.value == 1 || receivingTempValue - depositTempValue == 1) {
+    if (receivingCard?.value - cardToDeposit[0]?.value === 1 || receivingTempValue - depositTempValue === 1) {
       return true;
     } else {
       return false;
     }
   }
-  //TODO DELETE
+
+  //*********TODO DELETE*********
   // console.log(cardToDeposit[0].value)
   // if (cardToDeposit[0].value == receivingCard.value - 1) {
   //   console.log("The card can be deposited!")
@@ -141,7 +141,7 @@ const Deck = (props) => {
   //   validateValue(playerSelectedCard, { value: 7 })
   //   // console.log(playerSelectedCard)
   // }, [playerSelectedCard, setPlayerSelectedCard])
-  //TODO DELETE
+  //*********TODO DELETE*********
 
   const onClickKing = (data) => {
     if (data.target.className.includes('TLKing')) {
@@ -161,12 +161,19 @@ const Deck = (props) => {
         }
       } else {
         const lastCard = TLKing.length - 1;
-        if (validateValue(playerSelectedCard, TLKing[lastCard]) === true) {
-          console.log("validateValue is true")
-        } else if (validateValue(playerSelectedCard, TLKing[lastCard]) === false) {
-          console.log("Card can't Go There")
+        if (playerSelectedCard.length > 0) {
+          if (validateValue(playerSelectedCard, TLKing[lastCard]) === true) {
+            // console.log("validateValue is true")
+            setTLKing(oldArray => oldArray.concat(playerSelectedCard))
+            setPlayerSelectedCard([]);
+            player1Hand.splice(indexOfCard, 1)
+          } else if (validateValue(playerSelectedCard, TLKing[lastCard]) === false) {
+            console.log("Card can't Go There")
+          } else {
+            console.log("Wait....What???")
+          }
         } else {
-          console.log("Wait....What???")
+          console.log("PSC is empty")
         }
         // validateValue(playerSelectedCard, TLKing)
         // if (playerSelectedCard[0].value === "J") {
