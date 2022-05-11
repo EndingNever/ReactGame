@@ -97,19 +97,35 @@ const Deck = (props) => {
   }
 
   const validateValue = (cardToDeposit, receivingCard) => {
-    // eslint-disable-next-line eqeqeq
-    if (cardToDeposit[0].value==receivingCard.value-1){
-      console.log("The card can be deposited!")
-    } else{
-      console.log("The card " + cardToDeposit[0].value + " cannot be deposited to " + receivingCard.value)
-      // console.log(receivingCard.value)
+    let depositTempValue;
+    let receivingTempValue;
+    if (receivingCard.value == "K" || cardToDeposit[0]?.value == "K") {
+      depositTempValue = 13;
+      receivingTempValue = 13;
+    } else if (receivingCard.value == "Q" || cardToDeposit[0]?.value == "Q") {
+      depositTempValue = 12;
+      receivingTempValue = 12;
+    } else if (receivingCard.value == "J" || cardToDeposit[0]?.value == "J") {
+      depositTempValue = 11;
+      receivingTempValue = 11;
+    } else if (receivingCard.value == "A" || cardToDeposit[0]?.value == "A") {
+      depositTempValue = 1;
+      receivingTempValue = 1;
     }
+    console.log(depositTempValue)
+    // console.log(cardToDeposit[0].value)
+    // if (cardToDeposit[0].value == receivingCard.value - 1) {
+    //   console.log("The card can be deposited!")
+    // } else {
+    //   console.log("The card " + cardToDeposit[0].value + " cannot be deposited to " + receivingCard.value)
+    //   // console.log(receivingCard.value)
+    // }
   }
-  useEffect(()=>{
-    validateValue(playerSelectedCard, {value: 7})
+  useEffect(() => {
+    validateValue(playerSelectedCard, { value: 7 })
     // console.log(playerSelectedCard)
   }, [playerSelectedCard, setPlayerSelectedCard])
-  
+
   const onClickKing = (data) => {
     if (data.target.className.includes('TLKing')) {
       if (TLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
@@ -117,19 +133,19 @@ const Deck = (props) => {
           if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
             console.log('PSC IS A KING')
             setTLKing(playerSelectedCard)
-            setPlayerSelectedCard([]);            
+            setPlayerSelectedCard([]);
             player1Hand.splice(indexOfCard, indexOfCard + 1)
             console.log("card spliced from player hand and pushed to array")
-          } else { 
+          } else {
             console.log("PSC IS NOT A KING")
           }
         } else {
           console.log('playerSelectedCard is empty')
         }
       } else {
-        if(playerSelectedCard[0].value==="J"){
+        if (playerSelectedCard[0].value === "J") {
           // TODO PUSH TO EXISTING ARRAY
-          setTLKing(oldArray=>oldArray.concat(playerSelectedCard))
+          setTLKing(oldArray => oldArray.concat(playerSelectedCard))
         } else {
           console.log("This card cannot be pushed!")
         }
@@ -141,9 +157,9 @@ const Deck = (props) => {
       // }
       // console.log("TLKing")
     } else if (data.target.className.includes('TRKing')) {
-      if(TRKing[0].suit===undefined) {
-        if(playerSelectedCard.length > 0) {
-          if(playerSelectedCard[0].value==="K"){
+      if (TRKing[0].suit === undefined) {
+        if (playerSelectedCard.length > 0) {
+          if (playerSelectedCard[0].value === "K") {
             console.log("PSC IS A KING")
           } else {
             console.log("PSC IS NOT A KING")
