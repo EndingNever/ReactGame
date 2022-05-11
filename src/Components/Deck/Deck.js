@@ -9,7 +9,7 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([{ value: "K", suit: "spades" }, {value: "Q", suit:"diamonds"}])
+  const [TLKing, setTLKing] = useState([{ value: "K", suit: "spades" }, {value: "Q", suit:"diamonds"},{value: "J", suit:"diamonds"}])
   const [TRKing, setTRKing] = useState([{ value: "King" }])
   const [BRKing, setBRKing] = useState([{ value: "King" }])
   const [BLKing, setBLKing] = useState([{ value: "King" }])
@@ -127,9 +127,7 @@ const Deck = (props) => {
       console.log("card can be deposited!")
       // console.log(receivingTempValue, depositTempValue)
     } else {
-      // console.log(cardToDeposit[0]?.value, receivingCard.value)
-      console.log("receiving card value is " + receivingTempValue)
-      console.log("deposit card value is " + depositTempValue)
+      console.log("receiving card value is " + receivingTempValue, "deposit card value is " + depositTempValue, "Card cannot be deposited")
     }
     // console.log(cardToDeposit[0].value)
     // if (cardToDeposit[0].value == receivingCard.value - 1) {
