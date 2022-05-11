@@ -111,8 +111,15 @@ const Deck = (props) => {
     } else if (receivingCard.value == "A" || cardToDeposit[0]?.value == "A") {
       depositTempValue = 1;
       receivingTempValue = 1;
+    } else {
+      depositTempValue = cardToDeposit[0]?.value;
+      receivingTempValue = receivingCard[0]?.value;
     }
-    console.log(depositTempValue)
+    if (receivingCard.value - cardToDeposit[0]?.value== 1 || depositTempValue - receivingTempValue == 1) {
+      console.log("The card can be deposited!")
+    } else {
+      console.log(cardToDeposit[0].value, receivingCard.value)
+    }
     // console.log(cardToDeposit[0].value)
     // if (cardToDeposit[0].value == receivingCard.value - 1) {
     //   console.log("The card can be deposited!")
