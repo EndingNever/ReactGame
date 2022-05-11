@@ -99,26 +99,27 @@ const Deck = (props) => {
   const validateValue = (cardToDeposit, receivingCard) => {
     let depositTempValue;
     let receivingTempValue;
-    if (receivingCard.value == "K" || cardToDeposit[0]?.value == "K") {
+    if (receivingCard[0]?.value == "K" || cardToDeposit[0]?.value == "K") {
       depositTempValue = 13;
       receivingTempValue = 13;
-    } else if (receivingCard.value == "Q" || cardToDeposit[0]?.value == "Q") {
+    } else if (receivingCard[0]?.value == "Q" || cardToDeposit[0]?.value == "Q") {
       depositTempValue = 12;
       receivingTempValue = 12;
-    } else if (receivingCard.value == "J" || cardToDeposit[0]?.value == "J") {
+    } else if (receivingCard[0]?.value == "J" || cardToDeposit[0]?.value == "J") {
       depositTempValue = 11;
       receivingTempValue = 11;
-    } else if (receivingCard.value == "A" || cardToDeposit[0]?.value == "A") {
+    } else if (receivingCard[0]?.value == "A" || cardToDeposit[0]?.value == "A") {
       depositTempValue = 1;
       receivingTempValue = 1;
     } else {
       depositTempValue = cardToDeposit[0]?.value;
       receivingTempValue = receivingCard[0]?.value;
     }
-    if (receivingCard.value - cardToDeposit[0]?.value== 1 || depositTempValue - receivingTempValue == 1) {
-      console.log("The card can be deposited!")
+    if (receivingCard[0]?.value - cardToDeposit[0]?.value== 1 || receivingTempValue - depositTempValue == 1) {
+      console.log(receivingTempValue, depositTempValue)
     } else {
-      console.log(cardToDeposit[0].value, receivingCard.value)
+      // console.log(cardToDeposit[0]?.value, receivingCard.value)
+      console.log("selected card value is " + depositTempValue)
     }
     // console.log(cardToDeposit[0].value)
     // if (cardToDeposit[0].value == receivingCard.value - 1) {
@@ -157,12 +158,6 @@ const Deck = (props) => {
           console.log("This card cannot be pushed!")
         }
       }
-      // if (TLKing.length > 1) {
-      //   console.log(TLKing.length)
-      // } else {
-      //   console.log(" not > 1")
-      // }
-      // console.log("TLKing")
     } else if (data.target.className.includes('TRKing')) {
       if (TRKing[0].suit === undefined) {
         if (playerSelectedCard.length > 0) {
