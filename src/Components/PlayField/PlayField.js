@@ -36,22 +36,22 @@ export default function PlayField(props) {
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, indexOfCard + 1)
+        player1Hand.splice(indexOfCard, 1)
         console.log(NDeck);
       } else if (classListWithDeck == "EDeck") {
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, indexOfCard + 1)
+        player1Hand.splice(indexOfCard, 1)
         console.log(EDeck);
       } else if (classListWithDeck == "SDeck") {
         setSDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, indexOfCard + 1)
+        player1Hand.splice(indexOfCard, 1)
         console.log(SDeck);
       } else if (classListWithDeck == "WDeck") {
         setWDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, indexOfCard + 1)
+        player1Hand.splice(indexOfCard, 1)
         console.log(WDeck);
       }
     } else {

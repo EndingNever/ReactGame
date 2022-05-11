@@ -141,8 +141,8 @@ const Deck = (props) => {
           if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
             console.log('PSC IS A KING')
             setTLKing(playerSelectedCard)
-            player1Hand.splice(indexOfCard, 1)
             setPlayerSelectedCard([]);
+            player1Hand.splice(indexOfCard, 1)
             console.log("card spliced from player hand and pushed to array")
           } else {
             console.log("PSC IS NOT A KING")
@@ -151,7 +151,7 @@ const Deck = (props) => {
           console.log('playerSelectedCard is empty')
         }
       } else {
-        console.log(playerSelectedCard)
+        console.log(TLKing)
         // if (playerSelectedCard[0].value === "J") {
         //   // TODO PUSH TO EXISTING ARRAY
         //   setTLKing(oldArray => oldArray.concat(playerSelectedCard))
