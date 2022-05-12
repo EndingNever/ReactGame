@@ -37,7 +37,7 @@ export default function PlayerCards(props) {
         {player1Hand.length > 0 && player1Hand.map((card, index) => (
           <>
             <div className='card-holder' key={index}>
-              <p onClick={onClickUserCard}>
+              <p className='player1Cards' onClick={onClickUserCard}>
                 {card.value} {card.suit}
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function PlayerCards(props) {
         {player2Hand.length > 0 && player2Hand.map((card, index) => (
           <>
             <div className='card-holder' key={index}>
-              <p onClick={onClickUserCard}>
+              <p className='player2Cards' onClick={onClickUserCard}>
                 {card.value} {card.suit}
               </p>
             </div>

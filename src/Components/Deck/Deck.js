@@ -85,17 +85,27 @@ const Deck = (props) => {
   }
 
   const onClickUserCard = (data) => {
-    const cardValue = data.target.childNodes[0].data;
-    const cardSuit = data.target.childNodes[2].data;
-    // const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
-    setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit)))
-    const slice = player1Hand.slice(indexOfCard, indexOfCard+1);
-    // if (playerSelectedCard.length < 1) {
-    setPlayerSelectedCard(slice)
-    // } else {
-    //   console.log('playerSelectedCard has 1 card already');
-    // }
+    if(data.target.className==="player1Cards"){
+      console.log("Player 1 Hand")
+      return "P1";
+    } else{
+      console.log("Player 2 Hand")
+      return "P2";
+    }
   }
+
+  // const onClickUserCard = (data) => {
+  //   const cardValue = data.target.childNodes[0].data;
+  //   const cardSuit = data.target.childNodes[2].data;
+  //   // const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
+  //   setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit)))
+  //   const slice = player1Hand.slice(indexOfCard, indexOfCard+1);
+  //   // if (playerSelectedCard.length < 1) {
+  //   setPlayerSelectedCard(slice)
+  //   // } else {
+  //   //   console.log('playerSelectedCard has 1 card already');
+  //   // }
+  // }
 
   const validateValue = (cardToDeposit, receivingCard) => {
     let depositTempValue;
