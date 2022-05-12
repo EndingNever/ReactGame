@@ -24,6 +24,7 @@ export default function PlayField(props) {
   const setBRKing=props.setBRKing;
   const setBLKing=props.setBLKing;
   const onClickKing=props.onClickKing;
+  const currentPlayer= props.currentPlayer 
 
   const validatePlayedCard = (data) => {
     console.log(data)
@@ -36,22 +37,22 @@ export default function PlayField(props) {
       if (classListWithDeck == "NDeck") {
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, 1)
+        currentPlayer.splice(indexOfCard, 1)
         console.log(NDeck);
       } else if (classListWithDeck == "EDeck") {
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, 1)
+        currentPlayer.splice(indexOfCard, 1)
         console.log(EDeck);
       } else if (classListWithDeck == "SDeck") {
         setSDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, 1)
+        currentPlayer.splice(indexOfCard, 1)
         console.log(SDeck);
       } else if (classListWithDeck == "WDeck") {
         setWDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        player1Hand.splice(indexOfCard, 1)
+        currentPlayer.splice(indexOfCard, 1)
         console.log(WDeck);
       }
     } else {

@@ -42,3 +42,11 @@ function App() {
 }
 
 export default App;
+
+// Created deck and shuffle ability
+// Created player 1 and player 2 hands
+// Created Arrays for NESW Decks
+// Functionality for pushing ANY card to ANY array
+// Created 4 King Arrays and pushing to those
+// Verifying that only a King can be pushed to King Arrays
+//! Flexing that verification into the NESW Arrays  
