@@ -90,10 +90,12 @@ const Deck = (props) => {
       return player1Hand;
     } else if (currentPlayer=="Player 2"){
       return player2Hand;
+    } else {
+      console.log("No Current Player")
     }
   }
 
-  const onClickUserCard = (data) => {
+  const onClickUserCard = (data) => { // Current player is set here
     if(data.target.className==="player1Cards"){
       console.log("Player 1 Hand")
       setCurrentPlayer("Player 1");
@@ -280,12 +282,17 @@ const Deck = (props) => {
     }
   }
 
+  const startGame=()=>{
+    dealPlayers();
+    dealFourArrs();
+  }
 
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
-      <button onClick={dealPlayers}>Deal Players</button>
-      <button onClick={dealFourArrs}>Deal Four Arrs</button>
+      <button onClick={startGame}>Start Da Game!</button>
+      {/* <button onClick={dealPlayers}>Deal Players</button> */}
+      {/* <button onClick={dealFourArrs}>Deal Four Arrs</button> */}
       <PlayField checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
