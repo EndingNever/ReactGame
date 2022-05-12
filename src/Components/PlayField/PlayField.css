@@ -1,0 +1,118 @@
+.playfield-container {
+  border: 2px solid red;
+  min-width: 800px;
+  max-width: 1500px;
+  min-height: 800px;
+  max-height: 1500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.playfield-container .starter-card,
+.playfield-container .deck {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  width: 50px;
+  background-color: white;
+  position: absolute;
+  border: 2px solid green;
+  text-align: center;
+}
+
+.playfield-container .card-0 {
+  border: 2px solid red;
+  position: relative;
+  bottom: 120px;
+}
+
+.playfield-container .card-1 {
+  border: 2px solid orange;
+  position: absolute;
+  right: 35%;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.playfield-container .card-2 {
+  border: 2px solid purple;
+  position: absolute;
+  top: 540px;
+}
+
+.playfield-container .card-3 {
+  border: 2px solid yellow;
+  position: absolute;
+  left: 35%;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.playfield-container .card-king {
+  width: 50px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.playfield-container .setup-king {
+  background-color: #0b2627;
+  color: rgba(255, 255, 255, 0.205);
+}
+
+.playfield-container .king-0 {
+  position: absolute;
+  left: 540px;
+  -webkit-transform: rotate(130deg);
+          transform: rotate(130deg);
+  top: 305px;
+}
+
+.playfield-container .king-1 {
+  position: absolute;
+  right: 540px;
+  top: 305px;
+  -webkit-transform: rotate(-130deg);
+          transform: rotate(-130deg);
+}
+
+.playfield-container .king-2 {
+  position: absolute;
+  -webkit-transform: rotate(-40deg);
+          transform: rotate(-40deg);
+  top: 530px;
+  right: 540px;
+}
+
+.playfield-container .king-3 {
+  position: absolute;
+  top: 530px;
+  left: 540px;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+
+.playfield-container .setup-spot {
+  background-color: rgba(11, 38, 39, 0.644);
+  height: 100px;
+  width: 50px;
+  border: none;
+}
+/*# sourceMappingURL=PlayField.css.map */

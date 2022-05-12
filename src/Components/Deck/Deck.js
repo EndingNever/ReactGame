@@ -13,8 +13,8 @@ const Deck = (props) => {
   const [TRKing, setTRKing] = useState([{ value: "King" }])
   const [BRKing, setBRKing] = useState([{ value: "King" }])
   const [BLKing, setBLKing] = useState([{ value: "King" }])
-  const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
-  // const [player1Hand, setPlayer1Hand] = useState([]);
+  // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
+  const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
   const [indexOfCard, setIndexOfCard] = useState('')
@@ -226,7 +226,36 @@ const Deck = (props) => {
         }
       }
     } else if (data.target.className.includes('BLKing')) {
-      console.log("BLKing")
+        if (BLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+          if (playerSelectedCard.length > 0) { // IF the player has selected a card
+            if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
+              console.log(playerSelectedCard[0]?.value,  ", the first king, pushed to bottom right");
+              setBLKing(playerSelectedCard)
+              setPlayerSelectedCard([]);
+              player1Hand.splice(indexOfCard, 1)
+            } else {
+              console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
+            }
+          } else {
+            console.log("playerSelectedCard is empty")
+          }
+        } else { // Code block for when a King has already been placed
+          const lastCard = BLKing.length - 1;
+          if (playerSelectedCard.length > 0) {
+            if (validateValue(playerSelectedCard, BLKing[lastCard]) === true) {
+              console.log(playerSelectedCard[0]?.value, " pushed to bottom left")
+              setBLKing(oldArray => oldArray.concat(playerSelectedCard))
+              setPlayerSelectedCard([]);
+              player1Hand.splice(indexOfCard, 1)
+            } else if (validateValue(playerSelectedCard, BLKing[lastCard]) === false) {
+              console.log("Card can't Go There")
+            } else {
+              console.log("Wait....What???")
+            }
+          } else {
+            console.log("PSC is empty")
+          }
+        }
     }
   }
   return (
