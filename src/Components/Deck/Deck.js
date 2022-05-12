@@ -13,7 +13,7 @@ const Deck = (props) => {
   const [TRKing, setTRKing] = useState([{ value: "King" }])
   const [BRKing, setBRKing] = useState([{ value: "King" }])
   const [BLKing, setBLKing] = useState([{ value: "King" }])
-  const [currentPlayer, setCurrentPlayer] = useState([])
+  const [currentPlayer, setCurrentPlayer] = useState()
   // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
@@ -100,23 +100,25 @@ const Deck = (props) => {
   const onClickUserCard = (data) => {
     if(data.target.className==="player1Cards"){
       console.log("Player 1 Hand")
-      setCurrentPlayer(player1Hand);
+      setCurrentPlayer("Player 1");
     } else if (data.target.className==="player2Cards"){
       console.log("Player 2 Hand")
-      setCurrentPlayer(player2Hand)
+      setCurrentPlayer("Player 2")
     }
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
-    // const valueFound = player1Hand.find(x => x.value === cardValue && x.suit === cardSuit) //this will search through player1Hand and find the location of x.value (=== "K") and x.suit
-    setIndexOfCard(currentPlayer.indexOf(currentPlayer.find(x => x.value == cardValue && x.suit == cardSuit)))
-    const slice = currentPlayer.slice(indexOfCard, indexOfCard + 1);
-    // if (playerSelectedCard.length < 1) {
-    setPlayerSelectedCard(slice)
-    console.log(currentPlayer)
-    // console.log("slice ", slice)
-    // } else {
-    //   console.log('playerSelectedCard has 1 card already');
-    // }
+    if (currentPlayer==="Player 1"){
+      setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
+      const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
+      // if (playerSelectedCard.length < 1) {
+        setPlayerSelectedCard(slice)
+      } else if(currentPlayer==="Player 2"){
+        setIndexOfCard(player2Hand.indexOf(player2Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player2Hand and find the location of x.value and x.suit
+        const slice = player2Hand.slice(indexOfCard, indexOfCard + 1);
+          setPlayerSelectedCard(slice)
+      } else {
+        console.log("no player")
+      }
   }
 
   const validateValue = (cardToDeposit, receivingCard) => { // Code for validating a legal move
@@ -286,11 +288,10 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
-      <PlayField currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+      <PlayField validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
       {playerSelectedCard.length > 0 && <p> Player is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
-      {/*DELETE <PlayerCards {...{ player1Hand, player2Hand, playerSelectedCard, setPlayerSelectedCard }} /> */}
       <PlayerCards  onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );

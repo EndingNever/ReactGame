@@ -13,6 +13,7 @@ export default function PlayField(props) {
   const playerSelectedCard = props.playerSelectedCard;
   const setPlayerSelectedCard = props.setPlayerSelectedCard;
   const player1Hand = props.player1Hand;
+  const player2Hand = props.player2Hand;
   const onClickUserCard = props.onClickUserCard;
   const indexOfCard = props.indexOfCard;
   const TLKing = props.TLKing;
@@ -26,33 +27,42 @@ export default function PlayField(props) {
   const onClickKing=props.onClickKing;
   const currentPlayer= props.currentPlayer 
 
-  const validatePlayedCard = (data) => {
-    console.log(data)
+  const checkPlayer = () => {
+    if (currentPlayer=="Player 1"){
+      return player1Hand;
+    } else if (currentPlayer=="Player 2"){
+      return player2Hand;
+    }
   }
 
   const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
+    let lastCard;
     if (playerSelectedCard.length > 0) {
       console.log(data.target.innerHTML);
       if (classListWithDeck == "NDeck") {
+        lastCard=NDeck.length-1;
         setNDeck(oldArray => oldArray.concat(playerSelectedCard))
         setPlayerSelectedCard([]);
-        currentPlayer.splice(indexOfCard, 1)
+        checkPlayer().splice(indexOfCard, 1)
         console.log(NDeck);
       } else if (classListWithDeck == "EDeck") {
+        lastCard=EDeck.length-1;
         setEDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        currentPlayer.splice(indexOfCard, 1)
+        checkPlayer().splice(indexOfCard, 1)
         console.log(EDeck);
       } else if (classListWithDeck == "SDeck") {
+        lastCard=SDeck.length-1;
         setSDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        currentPlayer.splice(indexOfCard, 1)
+        checkPlayer().splice(indexOfCard, 1)
         console.log(SDeck);
       } else if (classListWithDeck == "WDeck") {
+        lastCard=WDeck.length-1;
         setWDeck(oldArray => oldArray.concat(playerSelectedCard));
         setPlayerSelectedCard([]);
-        currentPlayer.splice(indexOfCard, 1)
+        checkPlayer().splice(indexOfCard, 1)
         console.log(WDeck);
       }
     } else {
