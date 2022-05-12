@@ -85,17 +85,13 @@ const Deck = (props) => {
     dealSDeck();
   }
 
-  // const onClickUserCard = (data) => {
-  //   let currentPlayer;
-  //   if(data.target.className==="player1Cards"){
-  //     console.log("Player 1 Hand")
-  //     currentPlayer=player1Hand;
-  //   } else if (data.target.className==="player2Cards"){
-  //     console.log("Player 2 Hand")
-  //     currentPlayer=player2Hand
-  //   }
-  //   console.log(currentPlayer)
-  // }
+  const checkPlayer = () => {
+    if (currentPlayer=="Player 1"){
+      return player1Hand;
+    } else if (currentPlayer=="Player 2"){
+      return player2Hand;
+    }
+  }
 
   const onClickUserCard = (data) => {
     if(data.target.className==="player1Cards"){
@@ -107,18 +103,21 @@ const Deck = (props) => {
     }
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
-    if (currentPlayer==="Player 1"){
-      setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
-      const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
-      // if (playerSelectedCard.length < 1) {
-        setPlayerSelectedCard(slice)
-      } else if(currentPlayer==="Player 2"){
-        setIndexOfCard(player2Hand.indexOf(player2Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player2Hand and find the location of x.value and x.suit
-        const slice = player2Hand.slice(indexOfCard, indexOfCard + 1);
-          setPlayerSelectedCard(slice)
-      } else {
-        console.log("no player")
-      }
+    setIndexOfCard(checkPlayer().indexOf(checkPlayer().find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through checkPlayer() and find the location of x.value and x.suit
+    const slice = checkPlayer().slice(indexOfCard, indexOfCard + 1);
+      setPlayerSelectedCard(slice)
+    // if (currentPlayer==="Player 1"){
+    //   setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
+    //   const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
+    //   // if (playerSelectedCard.length < 1) {
+    //     setPlayerSelectedCard(slice)
+    //   } else if(currentPlayer==="Player 2"){
+    //     setIndexOfCard(player2Hand.indexOf(player2Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player2Hand and find the location of x.value and x.suit
+    //     const slice = player2Hand.slice(indexOfCard, indexOfCard + 1);
+    //       setPlayerSelectedCard(slice)
+    //   } else {
+    //     console.log("no player")
+    //   }
   }
 
   const validateValue = (cardToDeposit, receivingCard) => { // Code for validating a legal move
@@ -161,7 +160,7 @@ const Deck = (props) => {
           if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
             setTLKing(playerSelectedCard)
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
             console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top left");
           } else {
             console.log("PSC IS NOT A KING")
@@ -175,7 +174,7 @@ const Deck = (props) => {
           if (validateValue(playerSelectedCard, TLKing[lastCard]) === true) { // If deposit is one less than receiving
             setTLKing(oldArray => oldArray.concat(playerSelectedCard))  // [{value: "K", suit: "diamond"}, [{value: "Q", suit: "heart"}]]
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
             console.log(playerSelectedCard[0]?.value, "pushed to top left");
           } else if (validateValue(playerSelectedCard, TLKing[lastCard]) === false) {
             console.log("Card can't Go There")
@@ -193,7 +192,7 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top right");
             setTRKing(playerSelectedCard)
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else {
             console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
           }
@@ -207,7 +206,7 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, " pushed to top right")
             setTRKing(oldArray => oldArray.concat(playerSelectedCard))
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else if (validateValue(playerSelectedCard, TRKing[lastCard]) === false) {
             console.log("Card can't Go There")
           } else {
@@ -224,7 +223,7 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
             setBRKing(playerSelectedCard)
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else {
             console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
           }
@@ -238,7 +237,7 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, " pushed to bottom right")
             setBRKing(oldArray => oldArray.concat(playerSelectedCard))
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else if (validateValue(playerSelectedCard, BRKing[lastCard]) === false) {
             console.log("Card can't Go There")
           } else {
@@ -255,7 +254,7 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
             setBLKing(playerSelectedCard)
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else {
             console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
           }
@@ -269,12 +268,11 @@ const Deck = (props) => {
             console.log(playerSelectedCard[0]?.value, " pushed to bottom left")
             setBLKing(oldArray => oldArray.concat(playerSelectedCard))
             setPlayerSelectedCard([]);
-            player1Hand.splice(indexOfCard, 1)
+            checkPlayer().splice(indexOfCard, 1)
           } else if (validateValue(playerSelectedCard, BLKing[lastCard]) === false) {
             console.log("Card can't Go There")
           } else {
-            console.log("Wait....What???")
-          }
+            console.log("something went wrong")          }
         } else {
           console.log("PSC is empty")
         }
@@ -288,10 +286,10 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={dealPlayers}>Deal Players</button>
       <button onClick={dealFourArrs}>Deal Four Arrs</button>
-      <PlayField validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+      <PlayField checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
-      {playerSelectedCard.length > 0 && <p> Player is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
+      {playerSelectedCard.length > 0 ? <p> Player is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p> : <p>Select a card</p>}
       <PlayerCards  onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );

@@ -25,55 +25,66 @@ export default function PlayField(props) {
   const setBRKing=props.setBRKing;
   const setBLKing=props.setBLKing;
   const onClickKing=props.onClickKing;
-  const currentPlayer= props.currentPlayer 
-
-  const checkPlayer = () => {
-    if (currentPlayer=="Player 1"){
-      return player1Hand;
-    } else if (currentPlayer=="Player 2"){
-      return player2Hand;
-    }
-  }
+  const checkPlayer=props.checkPlayer;
+  const currentPlayer= props.currentPlayer;
+  const validateValue=props.validateValue;
 
   const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
     let lastCard;
     if (playerSelectedCard.length > 0) {
-      console.log(data.target.innerHTML);
       if (classListWithDeck == "NDeck") {
         lastCard=NDeck.length-1;
-        setNDeck(oldArray => oldArray.concat(playerSelectedCard))
-        setPlayerSelectedCard([]);
-        checkPlayer().splice(indexOfCard, 1)
-        console.log(NDeck);
+        if(validateValue(playerSelectedCard,NDeck[lastCard]) === true){
+          setNDeck(oldArray => oldArray.concat(playerSelectedCard))
+          setPlayerSelectedCard([]);
+          checkPlayer().splice(indexOfCard, 1)
+        } else if (validateValue(playerSelectedCard,NDeck[lastCard]) === false){
+          console.log("Card can't go there")
+        } else {
+          console.log("something went wrong")
+        }
       } else if (classListWithDeck == "EDeck") {
         lastCard=EDeck.length-1;
-        setEDeck(oldArray => oldArray.concat(playerSelectedCard));
-        setPlayerSelectedCard([]);
-        checkPlayer().splice(indexOfCard, 1)
-        console.log(EDeck);
+        if (validateValue(playerSelectedCard, EDeck[lastCard]) === true){
+          setEDeck(oldArray => oldArray.concat(playerSelectedCard));
+          setPlayerSelectedCard([]);
+          checkPlayer().splice(indexOfCard, 1)
+        } else if (validateValue(playerSelectedCard, EDeck[lastCard]) === false){
+          console.log("Card can't go there")
+        } else {
+          console.log("something went wrong")
+        }
       } else if (classListWithDeck == "SDeck") {
         lastCard=SDeck.length-1;
-        setSDeck(oldArray => oldArray.concat(playerSelectedCard));
-        setPlayerSelectedCard([]);
-        checkPlayer().splice(indexOfCard, 1)
-        console.log(SDeck);
+        if(validateValue(playerSelectedCard,SDeck[lastCard]) === true){
+          setSDeck(oldArray => oldArray.concat(playerSelectedCard, SDeck[lastCard]));
+          setPlayerSelectedCard([]);
+          checkPlayer().splice(indexOfCard, 1)
+        } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false){
+          console.log("Card can't go there")
+        } else{
+          console.log("something went wrong")
+        }
       } else if (classListWithDeck == "WDeck") {
         lastCard=WDeck.length-1;
-        setWDeck(oldArray => oldArray.concat(playerSelectedCard));
-        setPlayerSelectedCard([]);
-        checkPlayer().splice(indexOfCard, 1)
-        console.log(WDeck);
+        if(validateValue(playerSelectedCard, WDeck[lastCard]) === true){
+          setWDeck(oldArray => oldArray.concat(playerSelectedCard));
+          setPlayerSelectedCard([]);
+          checkPlayer().splice(indexOfCard, 1)
+        } else if(validateValue(playerSelectedCard, SDeck[lastCard]) === false){
+          console.log("Card can't go there")
+      } else {
+        console.log("something went wrong")
       }
     } else {
-      // console.log("PSC IS LESS THAN 0")
-      // console.log(data);
-      console.log(NDeck)
-      console.log(EDeck)
-      console.log(SDeck)
-      console.log(WDeck)
+      console.log("N", NDeck)
+      console.log("E", EDeck)
+      console.log("S", SDeck)
+      console.log("W", WDeck)
     }
   }
+}
 
 
 
