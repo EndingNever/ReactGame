@@ -9,10 +9,10 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([{ value: "" }])
-  const [TRKing, setTRKing] = useState([{ value: "" }])
-  const [BRKing, setBRKing] = useState([{ value: "" }])
-  const [BLKing, setBLKing] = useState([{ value: "" }])
+  const [TLKing, setTLKing] = useState([ { value: "" } ])
+  const [TRKing, setTRKing] = useState([ { value: "" } ])
+  const [BRKing, setBRKing] = useState([ { value: "" } ])
+  const [BLKing, setBLKing] = useState([ { value: "" } ])
   const [currentPlayer, setCurrentPlayer] = useState()
   // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);

@@ -96,8 +96,8 @@ export default function PlayField(props) {
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
         <div onClick={onPlaceCard} key={index} className="starter-card card-0 NDeck">
-          <div className={`${card.value}-${card.suit}`}>
-            {card.value} {card.suit}
+          <div className={`deckCard ${card.value}-${card.suit}`}>
+            <span>{card.value} {card.suit}</span>
           </div>
         </div>
       ))}

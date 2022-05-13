@@ -17,13 +17,15 @@
     width: 50px;
     background-color: white;
     position: absolute;
-    border: 2px solid green;
+    border: 2px solid black;
+    border-radius: 5px;
     text-align: center;
   }
   .card-0 {
-    border: 2px solid red;
+    // border: 2px solid red;
     position: absolute;
     top: 260px;
+    
   }
   .card-1 {
     border: 2px solid orange;
@@ -84,5 +86,13 @@
     height: 100px;
     width: 50px;
     border: none;
+  }
+  .NDeck {
+    border: 2px solid red;
+  }
+  .WDeck > div{
+    border: 2px solid green;
+    position: relative;
+    top: 20px;
   }
 }
