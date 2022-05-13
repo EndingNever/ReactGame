@@ -1,5 +1,5 @@
 .playfield-container {
-  border: 2px solid red;
+  // border: 2px solid red;
   min-width: 800px;
   max-width: 1500px;
   min-height: 800px;
@@ -20,10 +20,14 @@
     border: 2px solid green;
     text-align: center;
   }
+  .starter-card > * {
+    // border: 2px solid red;
+    
+  }
   .card-0 {
     border: 2px solid red;
-    position: relative;
-    bottom: 120px;
+    position: absolute;
+    top: 260px;
   }
   .card-1 {
     border: 2px solid orange;

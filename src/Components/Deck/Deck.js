@@ -41,14 +41,18 @@ const Deck = (props) => {
 
   const deckDraw = () => {
     const shift = deck.shift();
-    if (currentPlayer=="Player 1"){
-      setPlayer1Hand(oldArray => [...oldArray, shift])
-      setDrawnCard(true);
-    } else if (currentPlayer=="Player 2"){
-      setPlayer2Hand(oldArray => [...oldArray, shift])
-      setDrawnCard(true);
-    } else {
-      console.log("card cannot be drawn")
+    if(drawnCard===false){
+      if (currentPlayer=="Player 1"){
+        setPlayer1Hand(oldArray => [...oldArray, shift])
+        setDrawnCard(true);
+      } else if (currentPlayer=="Player 2"){
+        setPlayer2Hand(oldArray => [...oldArray, shift])
+        setDrawnCard(true);
+      } else {
+        console.log("card cannot be drawn")
+      }
+    } else{
+      console.log('card has been drawn')
     }
   }
 

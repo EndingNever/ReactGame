@@ -58,8 +58,8 @@ export default function PlayField(props) {
         }
       } else if (classListWithDeck == "SDeck") {
         lastCard=SDeck.length-1;
-        if(validateValue(playerSelectedCard,SDeck[lastCard]) === true){
-          setSDeck(oldArray => oldArray.concat(playerSelectedCard, SDeck[lastCard]));
+        if(validateValue(playerSelectedCard, SDeck[lastCard]) === true){
+          setSDeck(oldArray => oldArray.concat(playerSelectedCard));
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
         } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false){
@@ -86,16 +86,18 @@ export default function PlayField(props) {
     }
   }
 }
-// console.log("N", NDeck)
-// console.log("E", EDeck)
+console.log("N", NDeck)
+console.log("E", EDeck)
 console.log("S", SDeck)
-// console.log("W", WDeck)
+console.log("W", WDeck)
 
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
         <div onClick={onPlaceCard} key={index} className="starter-card card-0 NDeck">
+          <div className={`${card.value}-${card.suit}`}>
           {card.value} {card.suit}
+          </div>
         </div>
       ))}
       {EDeck.map((card, index) => (
@@ -114,14 +116,14 @@ console.log("S", SDeck)
         </div>
       ))}
 
-      {NDeck.length < 1 && //All 4 empty decks for NESW Decks
+      {/* {NDeck.length < 1 && //All 4 empty decks for NESW Decks
         <>
           <div className="setup-spot starter-card card-0">Empty</div>
           <div className="setup-spot starter-card card-1">Empty</div>
           <div className="setup-spot starter-card card-2">Empty</div>
           <div className="setup-spot starter-card card-3">Empty</div>
         </>
-      }
+      } */}
 
       <div onClick={deckDraw} className="deck">Deck</div>
       {TLKing.map((card, index)=>(

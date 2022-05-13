@@ -49,4 +49,9 @@ export default App;
 // Functionality for pushing ANY card to ANY array
 // Created 4 King Arrays and pushing to those
 // Verifying that only a King can be pushed to King Arrays
-//! Flexing that verification into the NESW Arrays  
+// Flexing that verification into the NESW Arrays  
+// Start Game, deal cards, deal players
+// Change Player Turn functionality
+// Player can Draw card from deck
+// Player MUST draw card from deck before ending turn
+//! Allow player to move whole decks NESW, to Kings location in corner
