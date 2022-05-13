@@ -116,6 +116,10 @@ console.log("W", WDeck)
         </div>
       ))}
 
+{NDeck.length < 1 && <div className='setup-spot starter-card card-0'></div>}
+{EDeck.length < 1 && <div className='setup-spot starter-card card-1'></div>}
+{SDeck.length < 1 && <div className='setup-spot starter-card card-2'></div>}
+{WDeck.length < 1 && <div className='setup-spot starter-card card-3'></div>}
       {/* {NDeck.length < 1 && //All 4 empty decks for NESW Decks
         <>
           <div className="setup-spot starter-card card-0">Empty</div>
