@@ -20,83 +20,84 @@ export default function PlayField(props) {
   const TRKing = props.TRKing;
   const BRKing = props.BRKing;
   const BLKing = props.BLKing;
-  const setTLKing=props.setTLKing;
-  const setTRKing=props.setTRKing;
-  const setBRKing=props.setBRKing;
-  const setBLKing=props.setBLKing;
-  const onClickKing=props.onClickKing;
-  const checkPlayer=props.checkPlayer;
-  const currentPlayer= props.currentPlayer;
-  const validateValue=props.validateValue;
+  const setTLKing = props.setTLKing;
+  const setTRKing = props.setTRKing;
+  const setBRKing = props.setBRKing;
+  const setBLKing = props.setBLKing;
+  const onClickKing = props.onClickKing;
+  const checkPlayer = props.checkPlayer;
+  const currentPlayer = props.currentPlayer;
+  const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
 
   const onPlaceCard = (data) => {
-    const classListWithDeck = data.target.classList[2];
+    console.log(data);
+    const classListWithDeck = data.target.className;
     let lastCard;
     if (playerSelectedCard.length > 0) {
-      if (classListWithDeck == "NDeck") {
-        lastCard=NDeck.length-1;
-        if(validateValue(playerSelectedCard,NDeck[lastCard]) === true){
+      if (classListWithDeck.includes('NDeck')) {
+        lastCard = NDeck.length - 1;
+        if (validateValue(playerSelectedCard, NDeck[lastCard]) === true) {
           setNDeck(oldArray => oldArray.concat(playerSelectedCard))
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if (validateValue(playerSelectedCard,NDeck[lastCard]) === false){
+        } else if (validateValue(playerSelectedCard, NDeck[lastCard]) === false) {
           console.log("Card can't go there")
         } else {
           console.log("something went wrong")
         }
-      } else if (classListWithDeck == "EDeck") {
-        lastCard=EDeck.length-1;
-        if (validateValue(playerSelectedCard, EDeck[lastCard]) === true){
+      } else if (classListWithDeck.includes("EDeck")) {
+        lastCard = EDeck.length - 1;
+        if (validateValue(playerSelectedCard, EDeck[lastCard]) === true) {
           setEDeck(oldArray => oldArray.concat(playerSelectedCard));
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if (validateValue(playerSelectedCard, EDeck[lastCard]) === false){
+        } else if (validateValue(playerSelectedCard, EDeck[lastCard]) === false) {
           console.log("Card can't go there")
         } else {
           console.log("something went wrong")
         }
-      } else if (classListWithDeck == "SDeck") {
-        lastCard=SDeck.length-1;
-        if(validateValue(playerSelectedCard, SDeck[lastCard]) === true){
+      } else if (classListWithDeck.includes("SDeck")) {
+        lastCard = SDeck.length - 1;
+        if (validateValue(playerSelectedCard, SDeck[lastCard]) === true) {
           setSDeck(oldArray => oldArray.concat(playerSelectedCard));
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false){
+        } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false) {
           console.log("Card can't go there")
-        } else{
+        } else {
           console.log("something went wrong")
         }
-      } else if (classListWithDeck == "WDeck") {
-        lastCard=WDeck.length-1;
-        if(validateValue(playerSelectedCard, WDeck[lastCard]) === true){
+      } else if (classListWithDeck.includes("WDeck")) {
+        lastCard = WDeck.length - 1;
+        if (validateValue(playerSelectedCard, WDeck[lastCard]) === true) {
           setWDeck(oldArray => oldArray.concat(playerSelectedCard));
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if(validateValue(playerSelectedCard, SDeck[lastCard]) === false){
+        } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false) {
           console.log("Card can't go there")
+        } else {
+          console.log("something went wrong")
+        }
       } else {
-        console.log("something went wrong")
+        console.log("N", NDeck)
+        console.log("E", EDeck)
+        console.log("S", SDeck)
+        console.log("W", WDeck)
       }
-    } else {
-      console.log("N", NDeck)
-      console.log("E", EDeck)
-      console.log("S", SDeck)
-      console.log("W", WDeck)
     }
   }
-}
-console.log("N", NDeck)
-console.log("E", EDeck)
-console.log("S", SDeck)
-console.log("W", WDeck)
+  console.log("N", NDeck)
+  console.log("E", EDeck)
+  console.log("S", SDeck)
+  console.log("W", WDeck)
 
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
         <div onClick={onPlaceCard} key={index} className="starter-card card-0 NDeck">
           <div className={`${card.value}-${card.suit}`}>
-          {card.value} {card.suit}
+            {card.value} {card.suit}
           </div>
         </div>
       ))}
@@ -116,36 +117,28 @@ console.log("W", WDeck)
         </div>
       ))}
 
-{NDeck.length < 1 && <div className='setup-spot starter-card card-0'></div>}
-{EDeck.length < 1 && <div className='setup-spot starter-card card-1'></div>}
-{SDeck.length < 1 && <div className='setup-spot starter-card card-2'></div>}
-{WDeck.length < 1 && <div className='setup-spot starter-card card-3'></div>}
-      {/* {NDeck.length < 1 && //All 4 empty decks for NESW Decks
-        <>
-          <div className="setup-spot starter-card card-0">Empty</div>
-          <div className="setup-spot starter-card card-1">Empty</div>
-          <div className="setup-spot starter-card card-2">Empty</div>
-          <div className="setup-spot starter-card card-3">Empty</div>
-        </>
-      } */}
-
+      {NDeck.length < 1 && <div className='setup-spot starter-card card-0'>Empty</div>}
+      {EDeck.length < 1 && <div className='setup-spot starter-card card-1'>Empty</div>}
+      {SDeck.length < 1 && <div className='setup-spot starter-card card-2'>Empty</div>}
+      {WDeck.length < 1 && <div className='setup-spot starter-card card-3'>Empty</div>}
+      
       <div onClick={deckDraw} className="deck">Deck</div>
-      {TLKing.map((card, index)=>(
+      {TLKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">
           {card.value} {card.suit}
         </div>
       ))}
-      {TRKing.map((card, index)=>(
+      {TRKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-1 TRKing">
           {card.value} {card.suit}
         </div>
       ))}
-      {BRKing.map((card, index)=>(
+      {BRKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-2 BRKing">
           {card.value} {card.suit}
         </div>
       ))}
-      {BLKing.map((card, index)=>(
+      {BLKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-3 BLKing">
           {card.value} {card.suit}
         </div>

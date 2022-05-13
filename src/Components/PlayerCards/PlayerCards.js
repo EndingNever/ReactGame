@@ -36,8 +36,8 @@ export default function PlayerCards(props) {
         {player1Hand.length > 0 && player1Hand.map((card, index) => (
           <>
             <div className='card-holder' key={index}>
-              <p className='player1Cards' onClick={onClickUserCard}>
-                {card.value} {card.suit}
+              <p className='player1Cards' >
+                <span onClick={onClickUserCard}>{card.value} {card.suit}</span>
               </p>
             </div>
           </>

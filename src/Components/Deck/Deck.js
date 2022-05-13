@@ -9,10 +9,10 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([{ value: "King" }])
-  const [TRKing, setTRKing] = useState([{ value: "King" }])
-  const [BRKing, setBRKing] = useState([{ value: "King" }])
-  const [BLKing, setBLKing] = useState([{ value: "King" }])
+  const [TLKing, setTLKing] = useState([{ value: "" }])
+  const [TRKing, setTRKing] = useState([{ value: "" }])
+  const [BRKing, setBRKing] = useState([{ value: "" }])
+  const [BLKing, setBLKing] = useState([{ value: "" }])
   const [currentPlayer, setCurrentPlayer] = useState()
   // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
@@ -331,8 +331,9 @@ const Deck = (props) => {
       <PlayField deckDraw={deckDraw} checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
-      {playerSelectedCard.length > 0 ? <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p> : <p>{currentPlayer}: select a card</p>}
-      {!drawnCard && <p>Draw a card from the deck!</p>}
+      {currentPlayer!==undefined && <p>{currentPlayer}: select a card</p>}
+      {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>  }
+      {currentPlayer!==undefined & !drawnCard ? <p>Draw a card from the deck!</p> : null}
       {drawnCard && <p>Deck has been drawn</p>}
       <PlayerCards  onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
