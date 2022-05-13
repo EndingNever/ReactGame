@@ -85,6 +85,12 @@ const Deck = (props) => {
     dealSDeck();
   }
 
+  const startGame=()=>{
+    dealPlayers();
+    dealFourArrs();
+    setCurrentPlayer("Player 1")
+  }
+
   const checkPlayer = () => {
     if (currentPlayer=="Player 1"){
       return player1Hand;
@@ -95,14 +101,25 @@ const Deck = (props) => {
     }
   }
 
-  const onClickUserCard = (data) => { // Current player is set here
-    if(data.target.className==="player1Cards"){
-      console.log("Player 1 Hand")
-      setCurrentPlayer("Player 1");
-    } else if (data.target.className==="player2Cards"){
-      console.log("Player 2 Hand")
+  const changePlayer = () => {
+    if (currentPlayer=="Player 1"){
       setCurrentPlayer("Player 2")
+    } else if (currentPlayer=="Player 2"){
+      setCurrentPlayer("Player 1")
+    } else {
+      console.log("No Current Player");
     }
+    setPlayerSelectedCard([])
+  }
+
+  const onClickUserCard = (data) => { // Current player is set here
+    // if(data.target.className==="player1Cards"){
+    //   console.log("Player 1 Hand")
+    //   setCurrentPlayer("Player 1");
+    // } else if (data.target.className==="player2Cards"){
+    //   console.log("Player 2 Hand")
+    //   setCurrentPlayer("Player 2")
+    // }
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
     setIndexOfCard(checkPlayer().indexOf(checkPlayer().find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through checkPlayer() and find the location of x.value and x.suit
@@ -282,15 +299,13 @@ const Deck = (props) => {
     }
   }
 
-  const startGame=()=>{
-    dealPlayers();
-    dealFourArrs();
-  }
+console.log(currentPlayer)
 
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
+      <button onClick={changePlayer}>Change Player</button>
       {/* <button onClick={dealPlayers}>Deal Players</button> */}
       {/* <button onClick={dealFourArrs}>Deal Four Arrs</button> */}
       <PlayField checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}

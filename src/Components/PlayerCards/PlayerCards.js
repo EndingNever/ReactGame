@@ -29,7 +29,6 @@ export default function PlayerCards(props) {
   //   //? setPlayerSelectedCard(data.target.innerHTML)
   // }
 
-
   return (
     <div className='playerCards-container'>
       <div className="allPlayers player1">

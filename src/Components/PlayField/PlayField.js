@@ -86,8 +86,6 @@ export default function PlayField(props) {
   }
 }
 
-
-
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
