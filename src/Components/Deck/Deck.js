@@ -19,6 +19,7 @@ const Deck = (props) => {
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
   const [indexOfCard, setIndexOfCard] = useState('')
+  const [drawnCard, setDrawnCard] = useState(false);
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
@@ -36,6 +37,19 @@ const Deck = (props) => {
       }
     }
     console.log("Player 2 Hand Is Full")
+  }
+
+  const deckDraw = () => {
+    const shift = deck.shift();
+    if (currentPlayer=="Player 1"){
+      setPlayer1Hand(oldArray => [...oldArray, shift])
+      setDrawnCard(true);
+    } else if (currentPlayer=="Player 2"){
+      setPlayer2Hand(oldArray => [...oldArray, shift])
+      setDrawnCard(true);
+    } else {
+      console.log("card cannot be drawn")
+    }
   }
 
   const dealPlayers = () => { // This is so I can deal the players on call
@@ -101,13 +115,19 @@ const Deck = (props) => {
     }
   }
 
-  const changePlayer = () => {
-    if (currentPlayer=="Player 1"){
-      setCurrentPlayer("Player 2")
-    } else if (currentPlayer=="Player 2"){
-      setCurrentPlayer("Player 1")
+  const endTurn = () => {
+    if (drawnCard===true) {
+      if (currentPlayer=="Player 1"){
+        setCurrentPlayer("Player 2")
+        setDrawnCard(false)
+      } else if (currentPlayer=="Player 2"){
+        setCurrentPlayer("Player 1")
+        setDrawnCard(false)
+      } else {
+        console.log("No Current Player");
+      }
     } else {
-      console.log("No Current Player");
+      console.log(currentPlayer, "Must Draw a Card")
     }
     setPlayerSelectedCard([])
   }
@@ -299,19 +319,17 @@ const Deck = (props) => {
     }
   }
 
-console.log(currentPlayer)
-
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
-      <button onClick={changePlayer}>Change Player</button>
-      {/* <button onClick={dealPlayers}>Deal Players</button> */}
-      {/* <button onClick={dealFourArrs}>Deal Four Arrs</button> */}
-      <PlayField checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+      <button onClick={endTurn}>End Turn</button>
+      <PlayField deckDraw={deckDraw} checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
-      {playerSelectedCard.length > 0 ? <p> Player is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p> : <p>Select a card</p>}
+      {playerSelectedCard.length > 0 ? <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p> : <p>{currentPlayer}: select a card</p>}
+      {!drawnCard && <p>Draw a card from the deck!</p>}
+      {drawnCard && <p>Deck has been drawn</p>}
       <PlayerCards  onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );

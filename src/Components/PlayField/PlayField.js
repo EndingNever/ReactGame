@@ -28,6 +28,7 @@ export default function PlayField(props) {
   const checkPlayer=props.checkPlayer;
   const currentPlayer= props.currentPlayer;
   const validateValue=props.validateValue;
+  const deckDraw = props.deckDraw;
 
   const onPlaceCard = (data) => {
     const classListWithDeck = data.target.classList[2];
@@ -85,6 +86,10 @@ export default function PlayField(props) {
     }
   }
 }
+// console.log("N", NDeck)
+// console.log("E", EDeck)
+console.log("S", SDeck)
+// console.log("W", WDeck)
 
   return (
     <div className='playfield-container'>
@@ -109,12 +114,7 @@ export default function PlayField(props) {
         </div>
       ))}
 
-      {/* {setupCards.map((card, index) => (
-        <>
-          <div value={card.value} className={`starter-card card-${index}`} >{card.value}</div>
-        </>
-      ))}*/}
-      {NDeck.length < 1 &&
+      {NDeck.length < 1 && //All 4 empty decks for NESW Decks
         <>
           <div className="setup-spot starter-card card-0">Empty</div>
           <div className="setup-spot starter-card card-1">Empty</div>
@@ -122,7 +122,8 @@ export default function PlayField(props) {
           <div className="setup-spot starter-card card-3">Empty</div>
         </>
       }
-      <div className="deck">Deck</div>
+
+      <div onClick={deckDraw} className="deck">Deck</div>
       {TLKing.map((card, index)=>(
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">
           {card.value} {card.suit}
