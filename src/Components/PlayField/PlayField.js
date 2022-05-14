@@ -30,10 +30,10 @@ export default function PlayField(props) {
   const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
 
-  const onPlaceCard = (data) => {
-    console.log(data);
-    const classListWithDeck = data.target.className;
+  const placeCardOnDeck = (data) => { // What happens when someone clicks on a NESW deck
     let lastCard;
+    const classListWithDeck = data.target.className;
+    
     if (playerSelectedCard.length > 0) {
       if (classListWithDeck.includes('NDeck')) {
         lastCard = NDeck.length - 1;
@@ -41,9 +41,10 @@ export default function PlayField(props) {
           setNDeck(oldArray => oldArray.concat(playerSelectedCard))
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if (validateValue(playerSelectedCard, NDeck[lastCard]) === false) {
+        } else if (validateValue(playerSelectedCard, NDeck[lastCard]) === false) { 
+          setPlayerSelectedCard([])
           console.log("Card can't go there")
-        } else {
+        } else { //? Delete and turn into else if? For all 4 code blocks
           console.log("something went wrong")
         }
       } else if (classListWithDeck.includes("EDeck")) {
@@ -53,9 +54,10 @@ export default function PlayField(props) {
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
         } else if (validateValue(playerSelectedCard, EDeck[lastCard]) === false) {
+          setPlayerSelectedCard([])
           console.log("Card can't go there")
         } else {
-          console.log("something went wrong")
+          console.log("something went wrong") //?
         }
       } else if (classListWithDeck.includes("SDeck")) {
         lastCard = SDeck.length - 1;
@@ -64,9 +66,10 @@ export default function PlayField(props) {
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
         } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false) {
+          setPlayerSelectedCard([])
           console.log("Card can't go there")
         } else {
-          console.log("something went wrong")
+          console.log("something went wrong") //?
         }
       } else if (classListWithDeck.includes("WDeck")) {
         lastCard = WDeck.length - 1;
@@ -75,9 +78,10 @@ export default function PlayField(props) {
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
         } else if (validateValue(playerSelectedCard, SDeck[lastCard]) === false) {
+          setPlayerSelectedCard([])
           console.log("Card can't go there")
         } else {
-          console.log("something went wrong")
+          console.log("something went wrong") //?
         }
       } else {
         console.log("N", NDeck)
@@ -85,34 +89,38 @@ export default function PlayField(props) {
         console.log("S", SDeck)
         console.log("W", WDeck)
       }
+    } else{//!!!TODO!!!!
+      let currentDeckClass;
+      if(data){ //! Find out who to isolate className SDECK
+        currentDeckClass=data.target.className;
+      } else{
+        console.log(data.target.classList)
+      };
     }
   }
-  console.log("N", NDeck)
-  console.log("E", EDeck)
-  console.log("S", SDeck)
-  console.log("W", WDeck)
+console.log(playerSelectedCard.length)
 
   return (
     <div className='playfield-container'>
       {NDeck.map((card, index) => (
-        <div onClick={onPlaceCard} key={index} className="starter-card card-0 NDeck">
+        <div onClick={placeCardOnDeck} key={index} className="starter-card card-0 NDeck">
           <div className={`deckCard ${card.value}-${card.suit}`}>
             <span>{card.value} {card.suit}</span>
           </div>
         </div>
       ))}
       {EDeck.map((card, index) => (
-        <div onClick={onPlaceCard} key={index} className="starter-card card-1 EDeck">
+        <div onClick={placeCardOnDeck} key={index} className="starter-card card-1 EDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {SDeck.map((card, index) => (
-        <div onClick={onPlaceCard} key={index} className="starter-card card-2 SDeck">
+        <div onClick={placeCardOnDeck} key={index} className="starter-card card-2 SDeck">
           {card.value} {card.suit}
         </div>
       ))}
       {WDeck.map((card, index) => (
-        <div onClick={onPlaceCard} key={index} className="starter-card card-3 WDeck">
+        <div onClick={placeCardOnDeck} key={index} className="starter-card card-3 WDeck">
           {card.value} {card.suit}
         </div>
       ))}

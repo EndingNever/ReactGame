@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PlayerCards from '../PlayerCards/PlayerCards';
 import PlayField from '../PlayField/PlayField';
 import "./Deck.scss"
+// Dictionary - NESW Means cards North East South West of the central deck 
 
 const Deck = (props) => {
   const deck = props.deck;
@@ -9,10 +10,10 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([ { value: "" } ])
-  const [TRKing, setTRKing] = useState([ { value: "" } ])
-  const [BRKing, setBRKing] = useState([ { value: "" } ])
-  const [BLKing, setBLKing] = useState([ { value: "" } ])
+  const [TLKing, setTLKing] = useState([{ value: "" }])
+  const [TRKing, setTRKing] = useState([{ value: "" }])
+  const [BRKing, setBRKing] = useState([{ value: "" }])
+  const [BLKing, setBLKing] = useState([{ value: "" }])
   const [currentPlayer, setCurrentPlayer] = useState()
   // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
@@ -41,17 +42,17 @@ const Deck = (props) => {
 
   const deckDraw = () => {
     const shift = deck.shift();
-    if(drawnCard===false){
-      if (currentPlayer=="Player 1"){
+    if (drawnCard === false) {
+      if (currentPlayer == "Player 1") {
         setPlayer1Hand(oldArray => [...oldArray, shift])
         setDrawnCard(true);
-      } else if (currentPlayer=="Player 2"){
+      } else if (currentPlayer == "Player 2") {
         setPlayer2Hand(oldArray => [...oldArray, shift])
         setDrawnCard(true);
       } else {
         console.log("card cannot be drawn")
       }
-    } else{
+    } else {
       console.log('card has been drawn')
     }
   }
@@ -103,16 +104,16 @@ const Deck = (props) => {
     dealSDeck();
   }
 
-  const startGame=()=>{
+  const startGame = () => {
     dealPlayers();
     dealFourArrs();
     setCurrentPlayer("Player 1")
   }
 
   const checkPlayer = () => {
-    if (currentPlayer=="Player 1"){
+    if (currentPlayer == "Player 1") {
       return player1Hand;
-    } else if (currentPlayer=="Player 2"){
+    } else if (currentPlayer == "Player 2") {
       return player2Hand;
     } else {
       console.log("No Current Player")
@@ -120,11 +121,11 @@ const Deck = (props) => {
   }
 
   const endTurn = () => {
-    if (drawnCard===true) {
-      if (currentPlayer=="Player 1"){
+    if (drawnCard === true) {
+      if (currentPlayer == "Player 1") {
         setCurrentPlayer("Player 2")
         setDrawnCard(false)
-      } else if (currentPlayer=="Player 2"){
+      } else if (currentPlayer == "Player 2") {
         setCurrentPlayer("Player 1")
         setDrawnCard(false)
       } else {
@@ -136,31 +137,31 @@ const Deck = (props) => {
     setPlayerSelectedCard([])
   }
 
-  const onClickUserCard = (data) => { // Current player is set here
-    // if(data.target.className==="player1Cards"){
-    //   console.log("Player 1 Hand")
-    //   setCurrentPlayer("Player 1");
-    // } else if (data.target.className==="player2Cards"){
-    //   console.log("Player 2 Hand")
-    //   setCurrentPlayer("Player 2")
-    // }
+  const onClickUserCard = (data) => { // Sets the card the player wants to move
+    // //if(data.target.className==="player1Cards"){
+    //  // console.log("Player 1 Hand")
+    //  // setCurrentPlayer("Player 1");
+    // //} else if (data.target.className==="player2Cards"){
+    //  // console.log("Player 2 Hand")
+    //  // setCurrentPlayer("Player 2")
+    // //}
     const cardValue = data.target.childNodes[0].data;
     const cardSuit = data.target.childNodes[2].data;
     setIndexOfCard(checkPlayer().indexOf(checkPlayer().find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through checkPlayer() and find the location of x.value and x.suit
     const slice = checkPlayer().slice(indexOfCard, indexOfCard + 1);
-      setPlayerSelectedCard(slice)
-    // if (currentPlayer==="Player 1"){
-    //   setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
-    //   const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
-    //   // if (playerSelectedCard.length < 1) {
-    //     setPlayerSelectedCard(slice)
-    //   } else if(currentPlayer==="Player 2"){
-    //     setIndexOfCard(player2Hand.indexOf(player2Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player2Hand and find the location of x.value and x.suit
-    //     const slice = player2Hand.slice(indexOfCard, indexOfCard + 1);
-    //       setPlayerSelectedCard(slice)
-    //   } else {
-    //     console.log("no player")
-    //   }
+    setPlayerSelectedCard(slice)
+    // // if (currentPlayer==="Player 1"){
+    //   // setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
+    //   // const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
+    // //   // if (playerSelectedCard.length < 1) {
+    // //     setPlayerSelectedCard(slice)
+    // //   } else if(currentPlayer==="Player 2"){
+    // //     setIndexOfCard(player2Hand.indexOf(player2Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player2Hand and find the location of x.value and x.suit
+    // //     const slice = player2Hand.slice(indexOfCard, indexOfCard + 1);
+    // //       setPlayerSelectedCard(slice)
+    // //   } else {
+    // //     console.log("no player")
+    // //   }
   }
 
   const validateValue = (cardToDeposit, receivingCard) => { // Code for validating a legal move
@@ -315,7 +316,8 @@ const Deck = (props) => {
           } else if (validateValue(playerSelectedCard, BLKing[lastCard]) === false) {
             console.log("Card can't Go There")
           } else {
-            console.log("something went wrong")          }
+            console.log("something went wrong")
+          }
         } else {
           console.log("PSC is empty")
         }
@@ -331,11 +333,11 @@ const Deck = (props) => {
       <PlayField deckDraw={deckDraw} checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
         onClickKing={onClickKing}
       />
-      {currentPlayer!==undefined && <p>{currentPlayer}: select a card</p>}
-      {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>  }
-      {currentPlayer!==undefined & !drawnCard ? <p>Draw a card from the deck!</p> : null}
+      {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}
+      {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
+      {currentPlayer !== undefined & !drawnCard ? <p>Draw a card from the deck!</p> : null}
       {drawnCard && <p>Deck has been drawn</p>}
-      <PlayerCards  onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
+      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
     </div>
   );
 }
