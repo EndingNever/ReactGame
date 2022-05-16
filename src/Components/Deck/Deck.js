@@ -22,7 +22,7 @@ const Deck = (props) => {
   const [indexOfCard, setIndexOfCard] = useState('')
   const [drawnCard, setDrawnCard] = useState(false);
 
-  const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
+  const dealPlayerHand = (deck) => { // This function takes our deck as an array
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
       for (let i = 0; i < 7; i++) { // i < 7 because the player gets 7 cards
         const shift = deck.shift(); // Mutate the array by removing the first element
@@ -36,8 +36,9 @@ const Deck = (props) => {
         const shift = deck.shift();
         setPlayer2Hand(oldArray => [...oldArray, shift]);
       }
+    } else{
+      console.log("Player 2 Hand Is Full")
     }
-    console.log("Player 2 Hand Is Full")
   }
 
   const deckDraw = () => {
@@ -229,7 +230,7 @@ const Deck = (props) => {
           console.log("PSC is empty")
         }
       }
-    } else if (data.target.className.includes('TRKing')) {
+    } else if (data.target.className.includes('TRKing')) { // Same code, for top right king
       if (TRKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
         if (playerSelectedCard.length > 0) { // IF the player has selected a card
           if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
@@ -330,7 +331,25 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
       <button onClick={endTurn}>End Turn</button>
-      <PlayField deckDraw={deckDraw} checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+      <PlayField 
+        deckDraw={deckDraw} 
+        checkPlayer={checkPlayer} 
+        validateValue={validateValue} 
+        indexOfCard={indexOfCard} 
+        setPlayerSelectedCard={setPlayerSelectedCard} 
+        playerSelectedCard={playerSelectedCard} 
+        NDeck={NDeck} 
+        EDeck={EDeck} 
+        SDeck={SDeck} 
+        WDeck={WDeck} 
+        setNDeck={setNDeck} 
+        setEDeck={setEDeck} 
+        setSDeck={setSDeck} 
+        setWDeck={setWDeck} 
+        TLKing={TLKing} 
+        TRKing={TRKing} 
+        BRKing={BRKing} 
+        BLKing={BLKing} 
         onClickKing={onClickKing}
       />
       {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}

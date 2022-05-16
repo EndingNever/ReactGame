@@ -12,21 +12,21 @@ export default function PlayField(props) {
   const setWDeck = props.setWDeck;
   const playerSelectedCard = props.playerSelectedCard;
   const setPlayerSelectedCard = props.setPlayerSelectedCard;
-  const player1Hand = props.player1Hand;
-  const player2Hand = props.player2Hand;
-  const onClickUserCard = props.onClickUserCard;
   const indexOfCard = props.indexOfCard;
   const TLKing = props.TLKing;
   const TRKing = props.TRKing;
   const BRKing = props.BRKing;
   const BLKing = props.BLKing;
-  const setTLKing = props.setTLKing;
-  const setTRKing = props.setTRKing;
-  const setBRKing = props.setBRKing;
-  const setBLKing = props.setBLKing;
+  // const player1Hand = props.player1Hand;
+  // const player2Hand = props.player2Hand;
+  // const onClickUserCard = props.onClickUserCard;
+  // const setTLKing = props.setTLKing;
+  // const setTRKing = props.setTRKing;
+  // const setBRKing = props.setBRKing;
+  // const setBLKing = props.setBLKing;
+  // const currentPlayer = props.currentPlayer;
   const onClickKing = props.onClickKing;
   const checkPlayer = props.checkPlayer;
-  const currentPlayer = props.currentPlayer;
   const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
 
@@ -91,14 +91,25 @@ export default function PlayField(props) {
       }
     } else{//!!!TODO!!!!
       let currentDeckClass;
-      if(data){ //! Find out who to isolate className SDECK
-        currentDeckClass=data.target.className;
+      if(data.target.className.includes("EDeck")){
+        currentDeckClass="EDeck"
+      } else if (data.target.className.includes("NDeck")){
+        currentDeckClass="NDeck"
+      } else if (data.target.className.includes("SDeck")){
+        currentDeckClass="SDeck"
+      } else if (data.target.className.includes("WDeck")){
+        currentDeckClass="WDeck"
       } else{
-        console.log(data.target.classList)
-      };
+        console.log("Error")
+      }
+      console.log(currentDeckClass)
+      // if(data){ //! Find out who to isolate className SDECK
+      //   currentDeckClass=data.target.className;
+      // } else{
+      //   console.log(data.target.classList)
+      // };
     }
   }
-console.log(playerSelectedCard.length)
 
   return (
     <div className='playfield-container'>

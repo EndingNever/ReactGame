@@ -1,5 +1,4 @@
 .playfield-container {
-  border: 2px solid red;
   min-width: 800px;
   max-width: 1500px;
   min-height: 800px;
@@ -34,14 +33,14 @@
   width: 50px;
   background-color: white;
   position: absolute;
-  border: 2px solid green;
+  border: 2px solid black;
+  border-radius: 5px;
   text-align: center;
 }
 
 .playfield-container .card-0 {
-  border: 2px solid red;
-  position: relative;
-  bottom: 120px;
+  position: absolute;
+  top: 260px;
 }
 
 .playfield-container .card-1 {
@@ -114,5 +113,15 @@
   height: 100px;
   width: 50px;
   border: none;
+}
+
+.playfield-container .NDeck {
+  border: 2px solid red;
+}
+
+.playfield-container .WDeck > div {
+  border: 2px solid green;
+  position: relative;
+  top: 20px;
 }
 /*# sourceMappingURL=PlayField.css.map */
