@@ -4,8 +4,6 @@ import "./PlayerCards.scss"
 export default function PlayerCards(props) {
   const player1Hand = props.player1Hand;
   const player2Hand = props.player2Hand;
-  const playerSelectedCard = props.playerSelectedCard;
-  const setPlayerSelectedCard = props.setPlayerSelectedCard;
   const onClickUserCard=props.onClickUserCard;
 
   // const onClickUserCard = (data) => {

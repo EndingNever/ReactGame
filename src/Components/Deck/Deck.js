@@ -21,6 +21,7 @@ const Deck = (props) => {
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
   const [indexOfCard, setIndexOfCard] = useState('')
   const [drawnCard, setDrawnCard] = useState(false);
+  const [playerSelectedDeck, setPlayerSelectedDeck] = useState([])
 
   const dealPlayerHand = (deck) => { // This function takes an array (deck) which in this case will also be called deck
     if (player1Hand.length < 1) { // If Player 1 hand is not empty (which should never happen right now)
@@ -187,8 +188,8 @@ const Deck = (props) => {
       receivingTempValue = 11;
     } else if (receivingCard?.value === "A") {
       receivingTempValue = 1;
-      } else if(receivingCard?.value === undefined){
-        receivingTempValue="empty"
+    } else if (receivingCard?.value === undefined) {
+      receivingTempValue = "empty"
     } else {
       receivingTempValue = receivingCard?.value;
     }
@@ -213,7 +214,7 @@ const Deck = (props) => {
             console.log("PSC IS NOT A KING")
           }
         } else {
-          console.log('playerSelectedCard is empty')
+          console.log('playerSelectedCard, and playerSelectedDeck is empty')
         }
       } else { // Code block for when a King has already been placed
         const lastCard = TLKing.length - 1;
@@ -258,6 +259,10 @@ const Deck = (props) => {
             console.log("Card can't Go There")
           } else {
             console.log("Wait....What???")
+          }
+        } else if (playerSelectedDeck.length > 0){
+          if(validateValue(playerSelectedDeck, TRKing[lastCard]) === true) {
+            setTRKing(oldArray => oldArray.concat(playerSelectedDeck));
           }
         } else {
           console.log("PSC is empty")
@@ -326,14 +331,17 @@ const Deck = (props) => {
         }
       }
     }
+    // if
   }
-
+console.log(playerSelectedDeck)
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
       <button onClick={endTurn}>End Turn</button>
       <PlayField
+        playerSelectedDeck={playerSelectedDeck}
+        setPlayerSelectedDeck={setPlayerSelectedDeck}
         deckDraw={deckDraw}
         checkPlayer={checkPlayer}
         validateValue={validateValue}
@@ -356,9 +364,10 @@ const Deck = (props) => {
       />
       {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}
       {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
+      {playerSelectedDeck.length > 0 && <p>Deck selected: {playerSelectedDeck[0]?.value} {playerSelectedDeck[0]?.suit}</p>}
       {currentPlayer !== undefined & !drawnCard ? <p>Draw a card from the deck!</p> : null}
       {drawnCard && <p>Deck has been drawn</p>}
-      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} playerSelectedCard={playerSelectedCard} setPlayerSelectedCard={setPlayerSelectedCard} />
+      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand}  />
     </div>
   );
 }

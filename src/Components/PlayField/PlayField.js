@@ -21,8 +21,9 @@ export default function PlayField(props) {
   const checkPlayer = props.checkPlayer;
   const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
-  const [playerSelectedDeck, setPlayerSelectedDeck] = useState([])
-  const [currentDeckClass, setCurrentDeckClass] = useState([])
+  const playerSelectedDeck = props.playerSelectedDeck;
+  const setPlayerSelectedDeck = props.setPlayerSelectedDeck;
+  const [currentDeckClass, setCurrentDeckClass] = useState([]);
 
   const placeCardOnDeck = (data) => { // What happens when someone clicks on a NESW deck
     let lastCard;
@@ -209,6 +210,7 @@ export default function PlayField(props) {
       {WDeck.length < 1 && <div onClick={placeCardOnDeck} className='setup-spot starter-card card-3 WDeck'>Empty</div>}
 
       <div onClick={deckDraw} className="deck">Deck</div>
+     
       {TLKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">
           {card.value} {card.suit}
