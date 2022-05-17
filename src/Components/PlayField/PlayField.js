@@ -92,47 +92,64 @@ export default function PlayField(props) {
         console.log("W", WDeck)
       }
     } else { //!!!TODO!!!!
-      let currentDeckClass="NDeck";
-      if (data.target.className.includes("NDeck")) { //! Find out who to isolate className SDECK
-        // console.log("NDeck");
-        // let currentDeckClass="NDeck"
+      // let currentDeckClass="NDeck";
+      if (data.target.className.includes("NDeck")) { // Allows us to select the NESW Decks, priming it for moving
         setPlayerSelectedDeck(NDeck)
-      // } else if (data.target.className.includes("EDeck")) {
-      //   console.log("EDeck")
-      // } else if (data.target.className.includes("SDeck")) {
-      //   console.log("SDeck")
-      // } else if (data.target.className.includes("WDeck")) {
-      //   console.log("WDeck")
-      // } else {
-      //   console.log("No Deck")
-       }
-      if (playerSelectedDeck.length > 0) {
-        if (classListWithDeck.includes('EDeck')){
+        setCurrentDeckClass("NDeck")
+      } else if (data.target.className.includes("EDeck")) {// Allows us to select the NESW Decks, priming it for moving
+        setPlayerSelectedDeck(EDeck)
+        setCurrentDeckClass("EDeck")
+      } else if (data.target.className.includes("SDeck")) {// Allows us to select the NESW Decks, priming it for moving
+        setPlayerSelectedDeck(SDeck)
+        setCurrentDeckClass("SDeck")
+      } else if (data.target.className.includes("WDeck")) {// Allows us to select the NESW Decks, priming it for moving
+        setPlayerSelectedDeck(WDeck)
+        setCurrentDeckClass("WDeck")
+      } else {
+        console.log("No Deck")
+      }
+      if (playerSelectedDeck.length > 0) { // Once we have selected a deck to move
+        if (classListWithDeck.includes('EDeck')) { // If we are trying to move playerSelectedDeck to the EDeck
           lastCard = EDeck.length - 1;
-          console.log("CDC", currentDeckClass)
-          if (validateValue(playerSelectedDeck, EDeck[lastCard]) === true){ // code to make sure moving deck is a valid move
+          // console.log("CDC", currentDeckClass)
+          if (validateValue(playerSelectedDeck, EDeck[lastCard]) === true) { // code to make sure moving deck is a valid move
             console.log(currentDeckClass)
-            if (currentDeckClass==="NDeck"){
-              console.log("hello")
+            if (currentDeckClass === "NDeck") {
               setNDeck([])
-            } else if (currentDeckClass==="EDeck"){
-              setEDeck([])
-            } else if (currentDeckClass==="SDeck"){
+            } else if (currentDeckClass === "EDeck") {
+              console.log("Can't move to same spot")
+            } else if (currentDeckClass === "SDeck") {
               setSDeck([]);
-            } else if(currentDeckClass==="WDeck"){
+            } else if (currentDeckClass === "WDeck") {
               setWDeck([]);
             }
             setEDeck(oldArray => oldArray.concat(playerSelectedDeck));
             setPlayerSelectedDeck([]);
-          } else if (classListWithDeck.includes('SDeck')){ // code for next array
-
+          } else {
+            (console.log("Card can't go there"))  // code for next array
+          }
+        } else if (classListWithDeck.includes('SDeck')){ // If we are trying to move playerSelectedDeck to the SDeck
+          lastCard = SDeck.length - 1;
+          if(validateValue(playerSelectedDeck, SDeck[lastCard]) === true){
+            if (currentDeckClass === "NDeck") {
+              setNDeck([])
+            } else if (currentDeckClass === "EDeck") {
+              setEDeck([])
+            } else if (currentDeckClass === "SDeck") {
+              console.log("Same deck, same spot")
+            } else if (currentDeckClass === "WDeck") {
+              setWDeck([]);
+            }
+            setSDeck(oldArray => oldArray.concat(playerSelectedDeck));
+            setPlayerSelectedDeck([]);
+          } else {
+            (console.log("Card can't go there")) 
           }
         }
-
-      } 
-    } 
+      } // End of "PSD is > 0"
+    }
   }
-  // console.log("PSD ", playerSelectedDeck)
+
 
   return (
     <div className='playfield-container'>
