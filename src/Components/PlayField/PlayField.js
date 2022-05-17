@@ -42,6 +42,7 @@ export default function PlayField(props) {
           console.log("something went wrong")
         }
       } else if (classListWithDeck.includes("EDeck")) {
+        console.log("EDeck")
         lastCard = EDeck.length - 1;
         if (validateValue(playerSelectedCard, EDeck[lastCard]) === true) {
           setEDeck(oldArray => oldArray.concat(playerSelectedCard));
@@ -103,9 +104,7 @@ export default function PlayField(props) {
       if (playerSelectedDeck.length > 0) { // Once we have selected a deck to move
         if (classListWithDeck.includes('EDeck')) { // If we are trying to move playerSelectedDeck to the EDeck
           lastCard = EDeck.length - 1;
-          // console.log("CDC", currentDeckClass)
           if (validateValue(playerSelectedDeck, EDeck[lastCard]) === true) { // code to make sure moving deck is a valid move
-            console.log(currentDeckClass)
             if (currentDeckClass === "NDeck") {
               setNDeck([])
             } else if (currentDeckClass === "EDeck") {
@@ -122,6 +121,7 @@ export default function PlayField(props) {
           }
         } else if (classListWithDeck.includes('SDeck')) { // If we are trying to move playerSelectedDeck to the SDeck
           lastCard = SDeck.length - 1;
+          console.log("Sdeck")
           if (validateValue(playerSelectedDeck, SDeck[lastCard]) === true) {
             if (currentDeckClass === "NDeck") {
               setNDeck([])
@@ -137,11 +137,46 @@ export default function PlayField(props) {
           } else {
             (console.log("Card can't go there"))
           }
+        } else if (classListWithDeck.includes('WDeck')) { // If we are trying to move playerSelectedDeck to the WDeck
+          lastCard = WDeck.length - 1;
+          if (validateValue(playerSelectedDeck, WDeck[lastCard]) === true) {
+            if (currentDeckClass === "NDeck") {
+              setNDeck([])
+            } else if (currentDeckClass === "EDeck") {
+              setEDeck([])
+            } else if (currentDeckClass === "SDeck") {
+              setSDeck([])
+            } else if (currentDeckClass === "WDeck") {
+              console.log("Same deck, same spot")
+            }
+            setWDeck(oldArray => oldArray.concat(playerSelectedDeck));
+            setPlayerSelectedDeck([]);
+          } else {
+            (console.log("Card can't go there"))
+          }
+        } else if (classListWithDeck.includes('NDeck')) { // If we are trying to move playerSelectedDeck to the NDeck
+          lastCard = NDeck.length - 1;
+          if (validateValue(playerSelectedDeck, NDeck[lastCard]) === true) {
+            if (currentDeckClass === "NDeck") {
+              console.log("Same deck, same spot")
+            } else if (currentDeckClass === "EDeck") {
+              setEDeck([])
+            } else if (currentDeckClass === "SDeck") {
+              setSDeck([])
+            } else if (currentDeckClass === "WDeck") {
+              setWDeck([])
+            }
+            setNDeck(oldArray => oldArray.concat(playerSelectedDeck));
+            setPlayerSelectedDeck([]);
+          } else {
+            (console.log("Card can't go there"))
+          }
         }
       } // End of "PSD is > 0"
     }
   }
-
+  // console.log(EDeck?.value);
+  // console.log(validateValue({value: 4}, [])) 
 
   return (
     <div className='playfield-container'>
@@ -168,10 +203,10 @@ export default function PlayField(props) {
         </div>
       ))}
 
-      {NDeck.length < 1 && <div className='setup-spot starter-card card-0'>Empty</div>}
-      {EDeck.length < 1 && <div className='setup-spot starter-card card-1'>Empty</div>}
-      {SDeck.length < 1 && <div className='setup-spot starter-card card-2'>Empty</div>}
-      {WDeck.length < 1 && <div className='setup-spot starter-card card-3'>Empty</div>}
+      {NDeck.length < 1 && <div onClick={placeCardOnDeck} className='setup-spot starter-card card-0 NDeck'>Empty</div>}
+      {EDeck.length < 1 && <div onClick={placeCardOnDeck} className='setup-spot starter-card card-1 EDeck'>Empty</div>}
+      {SDeck.length < 1 && <div onClick={placeCardOnDeck} className='setup-spot starter-card card-2 SDeck'>Empty</div>}
+      {WDeck.length < 1 && <div onClick={placeCardOnDeck} className='setup-spot starter-card card-3 WDeck'>Empty</div>}
 
       <div onClick={deckDraw} className="deck">Deck</div>
       {TLKing.map((card, index) => (

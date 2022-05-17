@@ -6,11 +6,9 @@ import "./Deck.scss"
 
 const Deck = (props) => {
   const deck = props.deck;
-  const [NDeck, setNDeck] = useState([{ value: 4, suit: "hearts" }]);
+  const [NDeck, setNDeck] = useState([]);
   const [EDeck, setEDeck] = useState([]);
-  // const [NDeck, setNDeck] = useState([]);
-  // const [EDeck, setEDeck] = useState([]);
-  const [SDeck, setSDeck] = useState([{ value: 5, suit: "hearts" }]);
+  const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
   const [TLKing, setTLKing] = useState([{ value: "" }])
   const [TRKing, setTRKing] = useState([{ value: "" }])
@@ -189,15 +187,18 @@ const Deck = (props) => {
       receivingTempValue = 11;
     } else if (receivingCard?.value === "A") {
       receivingTempValue = 1;
+      } else if(receivingCard?.value === undefined){
+        receivingTempValue="empty"
     } else {
       receivingTempValue = receivingCard?.value;
     }
-    if (receivingCard?.value - cardToDeposit[0]?.value === 1 || receivingTempValue - depositTempValue === 1) {
+    if (receivingCard?.value - cardToDeposit[0]?.value == 1 || receivingTempValue - depositTempValue == 1 || receivingTempValue === "empty") {
       return true;
     } else {
       return false;
     }
   }
+
 
   const onClickKing = (data) => { // Code block for placing a King
     if (data.target.className.includes('TLKing')) { // Locates the position of the King Array 
