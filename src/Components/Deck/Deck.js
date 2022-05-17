@@ -6,11 +6,11 @@ import "./Deck.scss"
 
 const Deck = (props) => {
   const deck = props.deck;
-  const [NDeck, setNDeck] = useState([{value: 4, suit: "hearts"}]);
+  const [NDeck, setNDeck] = useState([{ value: 4, suit: "hearts" }]);
   const [EDeck, setEDeck] = useState([]);
   // const [NDeck, setNDeck] = useState([]);
   // const [EDeck, setEDeck] = useState([]);
-  const [SDeck, setSDeck] = useState([{value: 5, suit: "hearts"}]);
+  const [SDeck, setSDeck] = useState([{ value: 5, suit: "hearts" }]);
   const [WDeck, setWDeck] = useState([]);
   const [TLKing, setTLKing] = useState([{ value: "" }])
   const [TRKing, setTRKing] = useState([{ value: "" }])
@@ -332,7 +332,25 @@ const Deck = (props) => {
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
       <button onClick={endTurn}>End Turn</button>
-      <PlayField deckDraw={deckDraw} checkPlayer={checkPlayer} validateValue={validateValue} currentPlayer={currentPlayer} indexOfCard={indexOfCard} onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} setPlayerSelectedCard={setPlayerSelectedCard} playerSelectedCard={playerSelectedCard} NDeck={NDeck} EDeck={EDeck} SDeck={SDeck} WDeck={WDeck} setNDeck={setNDeck} setEDeck={setEDeck} setSDeck={setSDeck} setWDeck={setWDeck} TLKing={TLKing} TRKing={TRKing} BRKing={BRKing} BLKing={BLKing} setTLKing={setTLKing} setTRKing={setTRKing} setBRKing={setBRKing} setBLKing={setBLKing}
+      <PlayField
+        deckDraw={deckDraw}
+        checkPlayer={checkPlayer}
+        validateValue={validateValue}
+        indexOfCard={indexOfCard}
+        setPlayerSelectedCard={setPlayerSelectedCard}
+        playerSelectedCard={playerSelectedCard}
+        NDeck={NDeck}
+        EDeck={EDeck}
+        SDeck={SDeck}
+        WDeck={WDeck}
+        setNDeck={setNDeck}
+        setEDeck={setEDeck}
+        setSDeck={setSDeck}
+        setWDeck={setWDeck}
+        TLKing={TLKing}
+        TRKing={TRKing}
+        BRKing={BRKing}
+        BLKing={BLKing}
         onClickKing={onClickKing}
       />
       {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}
