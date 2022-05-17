@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./PlayField.scss"
 
 export default function PlayField(props) {
@@ -29,11 +29,13 @@ export default function PlayField(props) {
   const currentPlayer = props.currentPlayer;
   const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
+  const [playerSelectedDeck, setPlayerSelectedDeck] = useState([])
+  const [currentDeckClass, setCurrentDeckClass] = useState([])
 
   const placeCardOnDeck = (data) => { // What happens when someone clicks on a NESW deck
     let lastCard;
     const classListWithDeck = data.target.className;
-    
+
     if (playerSelectedCard.length > 0) {
       if (classListWithDeck.includes('NDeck')) {
         lastCard = NDeck.length - 1;
@@ -41,7 +43,7 @@ export default function PlayField(props) {
           setNDeck(oldArray => oldArray.concat(playerSelectedCard))
           setPlayerSelectedCard([]);
           checkPlayer().splice(indexOfCard, 1)
-        } else if (validateValue(playerSelectedCard, NDeck[lastCard]) === false) { 
+        } else if (validateValue(playerSelectedCard, NDeck[lastCard]) === false) {
           setPlayerSelectedCard([])
           console.log("Card can't go there")
         } else { //? Delete and turn into else if? For all 4 code blocks
@@ -89,16 +91,48 @@ export default function PlayField(props) {
         console.log("S", SDeck)
         console.log("W", WDeck)
       }
-    } else{//!!!TODO!!!!
-      let currentDeckClass;
-      if(data){ //! Find out who to isolate className SDECK
-        currentDeckClass=data.target.className;
-      } else{
-        console.log(data.target.classList)
-      };
-    }
+    } else { //!!!TODO!!!!
+      let currentDeckClass="NDeck";
+      if (data.target.className.includes("NDeck")) { //! Find out who to isolate className SDECK
+        // console.log("NDeck");
+        // let currentDeckClass="NDeck"
+        setPlayerSelectedDeck(NDeck)
+      // } else if (data.target.className.includes("EDeck")) {
+      //   console.log("EDeck")
+      // } else if (data.target.className.includes("SDeck")) {
+      //   console.log("SDeck")
+      // } else if (data.target.className.includes("WDeck")) {
+      //   console.log("WDeck")
+      // } else {
+      //   console.log("No Deck")
+       }
+      if (playerSelectedDeck.length > 0) {
+        if (classListWithDeck.includes('EDeck')){
+          lastCard = EDeck.length - 1;
+          console.log("CDC", currentDeckClass)
+          if (validateValue(playerSelectedDeck, EDeck[lastCard]) === true){ // code to make sure moving deck is a valid move
+            console.log(currentDeckClass)
+            if (currentDeckClass==="NDeck"){
+              console.log("hello")
+              setNDeck([])
+            } else if (currentDeckClass==="EDeck"){
+              setEDeck([])
+            } else if (currentDeckClass==="SDeck"){
+              setSDeck([]);
+            } else if(currentDeckClass==="WDeck"){
+              setWDeck([]);
+            }
+            setEDeck(oldArray => oldArray.concat(playerSelectedDeck));
+            setPlayerSelectedDeck([]);
+          } else if (classListWithDeck.includes('SDeck')){ // code for next array
+
+          }
+        }
+
+      } 
+    } 
   }
-console.log(playerSelectedCard.length)
+  // console.log("PSD ", playerSelectedDeck)
 
   return (
     <div className='playfield-container'>
@@ -129,7 +163,7 @@ console.log(playerSelectedCard.length)
       {EDeck.length < 1 && <div className='setup-spot starter-card card-1'>Empty</div>}
       {SDeck.length < 1 && <div className='setup-spot starter-card card-2'>Empty</div>}
       {WDeck.length < 1 && <div className='setup-spot starter-card card-3'>Empty</div>}
-      
+
       <div onClick={deckDraw} className="deck">Deck</div>
       {TLKing.map((card, index) => (
         <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">

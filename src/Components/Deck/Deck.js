@@ -6,8 +6,10 @@ import "./Deck.scss"
 
 const Deck = (props) => {
   const deck = props.deck;
-  const [NDeck, setNDeck] = useState([]);
-  const [EDeck, setEDeck] = useState([]);
+  const [NDeck, setNDeck] = useState([{value: 4, suit: "hearts"}]);
+  const [EDeck, setEDeck] = useState([{value: 5, suit: "hearts"}]);
+  // const [NDeck, setNDeck] = useState([]);
+  // const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
   const [TLKing, setTLKing] = useState([{ value: "" }])
