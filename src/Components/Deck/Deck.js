@@ -10,10 +10,10 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  const [TLKing, setTLKing] = useState([{ value: "" }])
-  const [TRKing, setTRKing] = useState([{ value: "" }])
-  const [BRKing, setBRKing] = useState([{ value: "" }])
-  const [BLKing, setBLKing] = useState([{ value: "" }])
+  // const [TLKing, setTLKing] = useState([{ value: "" }])
+  // const [TRKing, setTRKing] = useState([{ value: "" }])
+  // const [BRKing, setBRKing] = useState([{ value: "" }])
+  // const [BLKing, setBLKing] = useState([{ value: "" }])
   const [currentPlayer, setCurrentPlayer] = useState()
   // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
@@ -201,139 +201,139 @@ const Deck = (props) => {
   }
 
 
-  const onClickKing = (data) => { // Code block for placing a King
-    if (data.target.className.includes('TLKing')) { // Locates the position of the King Array 
-      if (TLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
-        if (playerSelectedCard.length > 0) { // IF the player has selected a card
-          if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
-            setTLKing(playerSelectedCard)
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-            console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top left");
-          } else {
-            console.log("PSC IS NOT A KING")
-          }
-        } else {
-          console.log('playerSelectedCard, and playerSelectedDeck is empty')
-        }
-      } else { // Code block for when a King has already been placed
-        const lastCard = TLKing.length - 1;
-        if (playerSelectedCard.length > 0) { // If the player selected a card
-          if (validateValue(playerSelectedCard, TLKing[lastCard]) === true) { // If deposit is one less than receiving
-            setTLKing(oldArray => oldArray.concat(playerSelectedCard))  // [{value: "K", suit: "diamond"}, [{value: "Q", suit: "heart"}]]
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-            console.log(playerSelectedCard[0]?.value, "pushed to top left");
-          } else if (validateValue(playerSelectedCard, TLKing[lastCard]) === false) {
-            console.log("Card can't Go There")
-          } else {
-            console.log("Wait....What???")
-          }
-        } else {
-          console.log("PSC is empty")
-        }
-      }
-    } else if (data.target.className.includes('TRKing')) {
-      if (TRKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
-        if (playerSelectedCard.length > 0) { // IF the player has selected a card
-          if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
-            console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top right");
-            setTRKing(playerSelectedCard)
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else {
-            console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
-          }
-        } else {
-          console.log("playerSelectedCard is empty")
-        }
-      } else { // Code block for when a King has already been placed
-        const lastCard = TRKing.length - 1;
-        if (playerSelectedCard.length > 0) {
-          if (validateValue(playerSelectedCard, TRKing[lastCard]) === true) {
-            console.log(playerSelectedCard[0]?.value, " pushed to top right")
-            setTRKing(oldArray => oldArray.concat(playerSelectedCard))
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else if (validateValue(playerSelectedCard, TRKing[lastCard]) === false) {
-            console.log("Card can't Go There")
-          } else {
-            console.log("Wait....What???")
-          }
-        } else if (playerSelectedDeck.length > 0){
-          if(validateValue(playerSelectedDeck, TRKing[lastCard]) === true) {
-            setTRKing(oldArray => oldArray.concat(playerSelectedDeck));
-          }
-        } else {
-          console.log("PSC is empty")
-        }
-      }
-    } else if (data.target.className.includes('BRKing')) {
-      if (BRKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
-        if (playerSelectedCard.length > 0) { // IF the player has selected a card
-          if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
-            console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
-            setBRKing(playerSelectedCard)
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else {
-            console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
-          }
-        } else {
-          console.log("playerSelectedCard is empty")
-        }
-      } else { // Code block for when a King has already been placed
-        const lastCard = BRKing.length - 1;
-        if (playerSelectedCard.length > 0) {
-          if (validateValue(playerSelectedCard, BRKing[lastCard]) === true) {
-            console.log(playerSelectedCard[0]?.value, " pushed to bottom right")
-            setBRKing(oldArray => oldArray.concat(playerSelectedCard))
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else if (validateValue(playerSelectedCard, BRKing[lastCard]) === false) {
-            console.log("Card can't Go There")
-          } else {
-            console.log("Wait....What???")
-          }
-        } else {
-          console.log("PSC is empty")
-        }
-      }
-    } else if (data.target.className.includes('BLKing')) {
-      if (BLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
-        if (playerSelectedCard.length > 0) { // IF the player has selected a card
-          if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
-            console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
-            setBLKing(playerSelectedCard)
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else {
-            console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
-          }
-        } else {
-          console.log("playerSelectedCard is empty")
-        }
-      } else { // Code block for when a King has already been placed
-        const lastCard = BLKing.length - 1;
-        if (playerSelectedCard.length > 0) {
-          if (validateValue(playerSelectedCard, BLKing[lastCard]) === true) {
-            console.log(playerSelectedCard[0]?.value, " pushed to bottom left")
-            setBLKing(oldArray => oldArray.concat(playerSelectedCard))
-            setPlayerSelectedCard([]);
-            checkPlayer().splice(indexOfCard, 1)
-          } else if (validateValue(playerSelectedCard, BLKing[lastCard]) === false) {
-            console.log("Card can't Go There")
-          } else {
-            console.log("something went wrong")
-          }
-        } else {
-          console.log("PSC is empty")
-        }
-      }
-    }
-    // if
-  }
-console.log(playerSelectedDeck)
+  // const onClickKing = (data) => { // Code block for placing a King
+  //   if (data.target.className.includes('TLKing')) { // Locates the position of the King Array 
+  //     if (TLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+  //       if (playerSelectedCard.length > 0) { // IF the player has selected a card
+  //         if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
+  //           setTLKing(playerSelectedCard)
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //           console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top left");
+  //         } else {
+  //           console.log("PSC IS NOT A KING")
+  //         }
+  //       } else {
+  //         console.log('playerSelectedCard, and playerSelectedDeck is empty')
+  //       }
+  //     } else { // Code block for when a King has already been placed
+  //       const lastCard = TLKing.length - 1;
+  //       if (playerSelectedCard.length > 0) { // If the player selected a card
+  //         if (validateValue(playerSelectedCard, TLKing[lastCard]) === true) { // If deposit is one less than receiving
+  //           setTLKing(oldArray => oldArray.concat(playerSelectedCard))  // [{value: "K", suit: "diamond"}, [{value: "Q", suit: "heart"}]]
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //           console.log(playerSelectedCard[0]?.value, "pushed to top left");
+  //         } else if (validateValue(playerSelectedCard, TLKing[lastCard]) === false) {
+  //           console.log("Card can't Go There")
+  //         } else {
+  //           console.log("Wait....What???")
+  //         }
+  //       } else {
+  //         console.log("PSC is empty")
+  //       }
+  //     }
+  //   } else if (data.target.className.includes('TRKing')) {
+  //     if (TRKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+  //       if (playerSelectedCard.length > 0) { // IF the player has selected a card
+  //         if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
+  //           console.log(playerSelectedCard[0]?.value, ", the first king, pushed to top right");
+  //           setTRKing(playerSelectedCard)
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else {
+  //           console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
+  //         }
+  //       } else {
+  //         console.log("playerSelectedCard is empty")
+  //       }
+  //     } else { // Code block for when a King has already been placed
+  //       const lastCard = TRKing.length - 1;
+  //       if (playerSelectedCard.length > 0) {
+  //         if (validateValue(playerSelectedCard, TRKing[lastCard]) === true) {
+  //           console.log(playerSelectedCard[0]?.value, " pushed to top right")
+  //           setTRKing(oldArray => oldArray.concat(playerSelectedCard))
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else if (validateValue(playerSelectedCard, TRKing[lastCard]) === false) {
+  //           console.log("Card can't Go There")
+  //         } else {
+  //           console.log("Wait....What???")
+  //         }
+  //       } else if (playerSelectedDeck.length > 0){
+  //         if(validateValue(playerSelectedDeck, TRKing[lastCard]) === true) {
+  //           setTRKing(oldArray => oldArray.concat(playerSelectedDeck));
+  //         }
+  //       } else {
+  //         console.log("PSC is empty")
+  //       }
+  //     }
+  //   } else if (data.target.className.includes('BRKing')) {
+  //     if (BRKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+  //       if (playerSelectedCard.length > 0) { // IF the player has selected a card
+  //         if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
+  //           console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
+  //           setBRKing(playerSelectedCard)
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else {
+  //           console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
+  //         }
+  //       } else {
+  //         console.log("playerSelectedCard is empty")
+  //       }
+  //     } else { // Code block for when a King has already been placed
+  //       const lastCard = BRKing.length - 1;
+  //       if (playerSelectedCard.length > 0) {
+  //         if (validateValue(playerSelectedCard, BRKing[lastCard]) === true) {
+  //           console.log(playerSelectedCard[0]?.value, " pushed to bottom right")
+  //           setBRKing(oldArray => oldArray.concat(playerSelectedCard))
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else if (validateValue(playerSelectedCard, BRKing[lastCard]) === false) {
+  //           console.log("Card can't Go There")
+  //         } else {
+  //           console.log("Wait....What???")
+  //         }
+  //       } else {
+  //         console.log("PSC is empty")
+  //       }
+  //     }
+  //   } else if (data.target.className.includes('BLKing')) {
+  //     if (BLKing[0].suit === undefined) { // IF undefined, the only card that can be pushed is a king
+  //       if (playerSelectedCard.length > 0) { // IF the player has selected a card
+  //         if (playerSelectedCard[0].value === "K") { // If the player selected a king they can push
+  //           console.log(playerSelectedCard[0]?.value, ", the first king, pushed to bottom right");
+  //           setBLKing(playerSelectedCard)
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else {
+  //           console.log(playerSelectedCard[0]?.value, " IS NOT A KING")
+  //         }
+  //       } else {
+  //         console.log("playerSelectedCard is empty")
+  //       }
+  //     } else { // Code block for when a King has already been placed
+  //       const lastCard = BLKing.length - 1;
+  //       if (playerSelectedCard.length > 0) {
+  //         if (validateValue(playerSelectedCard, BLKing[lastCard]) === true) {
+  //           console.log(playerSelectedCard[0]?.value, " pushed to bottom left")
+  //           setBLKing(oldArray => oldArray.concat(playerSelectedCard))
+  //           setPlayerSelectedCard([]);
+  //           checkPlayer().splice(indexOfCard, 1)
+  //         } else if (validateValue(playerSelectedCard, BLKing[lastCard]) === false) {
+  //           console.log("Card can't Go There")
+  //         } else {
+  //           console.log("something went wrong")
+  //         }
+  //       } else {
+  //         console.log("PSC is empty")
+  //       }
+  //     }
+  //   }
+  //   // if
+  // }
+
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
@@ -356,11 +356,11 @@ console.log(playerSelectedDeck)
         setEDeck={setEDeck}
         setSDeck={setSDeck}
         setWDeck={setWDeck}
-        TLKing={TLKing}
-        TRKing={TRKing}
-        BRKing={BRKing}
-        BLKing={BLKing}
-        onClickKing={onClickKing}
+        // TLKing={TLKing}
+        // TRKing={TRKing}
+        // BRKing={BRKing}
+        // BLKing={BLKing}
+        // onClickKing={onClickKing}
       />
       {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}
       {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}

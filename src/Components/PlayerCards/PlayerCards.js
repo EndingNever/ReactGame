@@ -35,7 +35,7 @@ export default function PlayerCards(props) {
           <>
             <div className='card-holder' key={index}>
               <p className='player1Cards' >
-                <span onClick={onClickUserCard}>{card.value} {card.suit}</span>
+                <span onClick={onClickUserCard}>{card?.value} {card?.suit}</span>
               </p>
             </div>
           </>
@@ -47,7 +47,7 @@ export default function PlayerCards(props) {
           <>
             <div className='card-holder' key={index}>
               <p className='player2Cards' onClick={onClickUserCard}>
-                {card.value} {card.suit}
+                {card?.value} {card?.suit}
               </p>
             </div>
           </>
