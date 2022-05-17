@@ -120,9 +120,9 @@ export default function PlayField(props) {
           } else {
             (console.log("Card can't go there"))  // code for next array
           }
-        } else if (classListWithDeck.includes('SDeck')){ // If we are trying to move playerSelectedDeck to the SDeck
+        } else if (classListWithDeck.includes('SDeck')) { // If we are trying to move playerSelectedDeck to the SDeck
           lastCard = SDeck.length - 1;
-          if(validateValue(playerSelectedDeck, SDeck[lastCard]) === true){
+          if (validateValue(playerSelectedDeck, SDeck[lastCard]) === true) {
             if (currentDeckClass === "NDeck") {
               setNDeck([])
             } else if (currentDeckClass === "EDeck") {
@@ -135,7 +135,7 @@ export default function PlayField(props) {
             setSDeck(oldArray => oldArray.concat(playerSelectedDeck));
             setPlayerSelectedDeck([]);
           } else {
-            (console.log("Card can't go there")) 
+            (console.log("Card can't go there"))
           }
         }
       } // End of "PSD is > 0"
@@ -194,14 +194,6 @@ export default function PlayField(props) {
           {card.value} {card.suit}
         </div>
       ))}
-      {/* {TLKing.length === 0 && <div className="starter-card card-king setup-king king-0">King goes here</div>}
-      {TRKing.length === 0 && <div className="starter-card card-king setup-king king-1">King goes here</div>}
-      {BRKing.length === 0 && <div className="starter-card card-king setup-king king-2">King goes here</div>}
-      {BLKing.length === 0 && <div className="starter-card card-king setup-king king-3">King goes here</div>} */}
-      {/* <div className="starter-card card-king setup-king king-0">King goes here</div>
-      <div className="starter-card card-king setup-king king-1">King goes here</div>
-      <div className="starter-card card-king setup-king king-2">King goes here</div>
-      <div className="starter-card card-king setup-king king-3">King goes here</div> */}
     </div>
   )
 }
