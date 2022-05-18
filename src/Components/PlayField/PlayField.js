@@ -83,11 +83,6 @@ export default function PlayField(props) {
         } else {
           console.log("something went wrong") //?
         }
-      } else {
-        console.log("N", NDeck)
-        console.log("E", EDeck)
-        console.log("S", SDeck)
-        console.log("W", WDeck)
       }
     } else { //!!!TODO!!!!
       // let currentDeckClass="NDeck";
