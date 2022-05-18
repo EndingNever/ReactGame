@@ -7,7 +7,7 @@ function App() {
   const suits = ["spades", "diamonds", "clubs", "hearts"];
   const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
-  const deck = new Array();
+  let deck = new Array();
 
   const getDeck = () => {
     for (let i = 0; i < suits.length; i++) {
@@ -29,14 +29,18 @@ function App() {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getDeck();
     shuffleDeck();
- }, [])
+  }, [])
+  console.log(deck)
 
   return (
     <div className="App">
-      <Deck deck={deck}/>
+      <Deck deck={deck}
+        getDeck={getDeck}
+        shuffleDeck={shuffleDeck}
+      />
     </div>
   );
 }

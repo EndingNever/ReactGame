@@ -5,7 +5,9 @@ import "./Deck.scss"
 // Dictionary - NESW Means cards North East South West of the central deck 
 
 const Deck = (props) => {
-  const deck = props.deck;
+  let deck = props.deck;
+  const getDeck = props.getDeck
+  const shuffleDeck = props.shuffleDeck
   const [NDeck, setNDeck] = useState([]);
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
@@ -121,10 +123,10 @@ const Deck = (props) => {
       console.log("No Current Player")
     }
   }
-  
+
   const checkWin = () => {
-    if (drawnCard === true){
-      if (checkPlayer().length === 0){
+    if (drawnCard === true) {
+      if (checkPlayer().length === 0) {
         console.log(currentPlayer, "has ", checkPlayer().length, " cards")
         return true
       } else {
@@ -153,7 +155,7 @@ const Deck = (props) => {
     }
     setPlayerSelectedCard([])
   }
-console.log(win)
+
   const onClickUserCard = (data) => { // Sets the card the player wants to move
     // //if(data.target.className==="player1Cards"){
     //  // console.log("Player 1 Hand")
@@ -216,13 +218,29 @@ console.log(win)
     }
   }
 
+  const restartGame = () => {
+    deck.splice(0, deck.length)
+    getDeck();
+    shuffleDeck();
+    setNDeck([])
+    setEDeck([])
+    setSDeck([])
+    setWDeck([])
+    setCurrentPlayer()
+    setPlayer1Hand([])
+    setPlayer2Hand([])
+    setPlayerSelectedCard([])
+    setDrawnCard(false)
+    setWin(false)
+  }
+
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
       <button onClick={startGame}>Start Da Game!</button>
       <button onClick={endTurn}>End Turn</button>
       {win === true && <h1>{currentPlayer} WINNER!</h1>}
-      {win === true && <button>Restart?</button>}
+      {win === true && <button onClick={restartGame}>Restart?</button>}
       <PlayField
         playerSelectedDeck={playerSelectedDeck}
         setPlayerSelectedDeck={setPlayerSelectedDeck}
@@ -246,7 +264,7 @@ console.log(win)
       {playerSelectedDeck.length > 0 && <p>Deck selected: {playerSelectedDeck[0]?.value} {playerSelectedDeck[0]?.suit}</p>}
       {currentPlayer !== undefined & !drawnCard ? <p>Draw a card from the deck!</p> : null}
       {drawnCard && <p>Deck has been drawn</p>}
-      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand}  />
+      <PlayerCards onClickUserCard={onClickUserCard} player1Hand={player1Hand} player2Hand={player2Hand} />
     </div>
   );
 }
