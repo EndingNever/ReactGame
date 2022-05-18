@@ -1,9 +1,8 @@
 .playfield-container {
   // border: 2px solid red;
-  min-width: 800px;
-  max-width: 1500px;
-  min-height: 800px;
-  max-height: 1500px;
+  margin-top: 80px;
+  width: 800px;
+  height: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -16,32 +15,48 @@
     height: 100px;
     width: 50px;
     background-color: white;
+    // bottom: 50px;
     position: absolute;
     border: 2px solid black;
     border-radius: 5px;
     text-align: center;
   }
   .card-0 {
-    // border: 2px solid red;
-    position: absolute;
-    top: 260px;
-    
+    border: 2px solid red;
+    margin-bottom: 250px;
+    // position: absolute;
+    // top: 200px;
+    // bottom: 50px;
+    // position: absolute;
+    // top: 260px;
   }
   .card-1 {
     border: 2px solid orange;
-    position: absolute;
-    right: 35%;
+    margin-left: 250px;
+    // position: absolute;
+    // top: 340px;
+    // right: 450px;
+    // position: absolute;
+    // right: 35%;
     transform: rotate(-90deg);
   }
   .card-2 {
     border: 2px solid purple;
-    position: absolute;
-    top: 540px;
+    margin-top: 250px;
+    // position: absolute;
+    // top: 450px;
+    // position: absolute;
+    // top: 540px;
   }
   .card-3 {
     border: 2px solid yellow;
-    position: absolute;
-    left: 35%;
+    // position: absolute;
+    margin-right: 250px;
+    // left: 440px;
+    // top: 330px;
+    // float: left;
+    // position: absolute;
+    // left: 35%;
     transform: rotate(90deg);
   }
   .card-king {
@@ -49,48 +64,46 @@
     height: 100px;
     border: 1px solid black;
   }
-  .setup-king{
+  .setup-king {
     background-color: rgb(11, 38, 39);
-    color: rgba(255, 255, 255, 0.205);
+    color: rgb(255, 255, 255);
   }
   .king-0 {
-    position: absolute;
-    left: 540px;
-    transform: rotate(130deg);
-    top: 305px;
-    // border: 2px solid red;
+    margin-bottom: 180px;
+    margin-right: 220px;
+    // position: absolute;
+    transform: rotate(125deg);
+    border: 2px solid red;
   }
   .king-1 {
-    position: absolute;
-    right: 540px;
-    top: 305px;
-    transform: rotate(-130deg);
-    // border: 2px solid orange;
+    // position: absolute;
+    margin-bottom: 180px;
+    margin-left: 220px;
+    transform: rotate(-125deg);
+    border: 2px solid orange;
   }
   .king-2 {
-    position: absolute;
+    margin-top: 200px;
+    margin-left: 200px;
     transform: rotate(-40deg);
-    top: 530px;
-    right: 540px;
-    //  border: 2px solid purple;
+    border: 2px solid purple;
   }
   .king-3 {
-    position: absolute;
-    top: 530px;
-    left: 540px;
+    margin-top: 200px;
+    margin-right: 200px;
     transform: rotate(40deg);
-    // border: 2px solid yellow;
+    border: 2px solid yellow;
   }
-  .setup-spot{
+  .setup-spot {
     background-color: rgba(11, 38, 39, 0.644);
     height: 100px;
     width: 50px;
     border: none;
   }
   .NDeck {
-    border: 2px solid red;
+    // border: 2px solid red;
   }
-  .WDeck > div{
+  .WDeck > div {
     border: 2px solid green;
     position: relative;
     top: 20px;

@@ -1,8 +1,10 @@
 .deck-container {
   display: flex;
-  padding-bottom: 100px;
+  padding-top: 20px;
+  // height: 100%;
+  // padding-bottom: 100px;
   flex-wrap: wrap;
-  justify-content: center;
+  // justify-content: center;
   flex-direction: column;
   align-items: center;
   .deck-PSC{

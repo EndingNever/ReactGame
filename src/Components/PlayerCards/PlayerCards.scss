@@ -3,15 +3,43 @@
   .allPlayers{
     margin: 20px;
     .card-holder{
-      border: 2px solid green;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // border: 1px solid rgba(0, 27, 0, 0.93);
       cursor: pointer;
+      height: 35px;
+      text-align: center;
+      margin-top: 8px;
       margin-bottom: 8px;
     }
   }
   .player1 {
-    border: 1px solid black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    // border: 1px solid black;
   }
   .player2 {
-    border: 1px solid black;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    // border: 1px solid black;
   }
+}
+.player1Cards{
+  background-color: inherit;
+  // border: 2px solid red;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+.player1Card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 27, 0, 0.93);
+  height: 100%;
+  width: 100%;
 }

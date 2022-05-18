@@ -12,12 +12,12 @@ const Deck = (props) => {
   const [EDeck, setEDeck] = useState([]);
   const [SDeck, setSDeck] = useState([]);
   const [WDeck, setWDeck] = useState([]);
-  // const [TLKing, setTLKing] = useState([{ value: "" }])
-  // const [TRKing, setTRKing] = useState([{ value: "" }])
-  // const [BRKing, setBRKing] = useState([{ value: "" }])
-  // const [BLKing, setBLKing] = useState([{ value: "" }])
+  const [TLKing, setTLKing] = useState([{ value: "" }])
+  const [TRKing, setTRKing] = useState([{ value: "" }])
+  const [BRKing, setBRKing] = useState([{ value: "" }])
+  const [BLKing, setBLKing] = useState([{ value: "" }])
   const [currentPlayer, setCurrentPlayer] = useState()
-  // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
+  // // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
@@ -45,12 +45,13 @@ const Deck = (props) => {
   }
 
   const deckDraw = () => {
-    const shift = deck.shift();
     if (drawnCard === false) {
       if (currentPlayer == "Player 1") {
+        const shift = deck.shift();
         setPlayer1Hand(oldArray => [...oldArray, shift])
         setDrawnCard(true);
       } else if (currentPlayer == "Player 2") {
+        const shift = deck.shift();
         setPlayer2Hand(oldArray => [...oldArray, shift])
         setDrawnCard(true);
       } else {
@@ -111,7 +112,11 @@ const Deck = (props) => {
   const startGame = () => {
     dealPlayers();
     dealFourArrs();
-    setCurrentPlayer("Player 1")
+    if (currentPlayer === undefined) {
+      setCurrentPlayer("Player 1")
+    } else {
+      console.log("Game already started, current player is ", currentPlayer);
+    }
   }
 
   const checkPlayer = () => {
@@ -169,6 +174,7 @@ const Deck = (props) => {
     setIndexOfCard(checkPlayer().indexOf(checkPlayer().find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through checkPlayer() and find the location of x.value and x.suit
     const slice = checkPlayer().slice(indexOfCard, indexOfCard + 1);
     setPlayerSelectedCard(slice)
+    console.log(data.target.childNodes[0].data)
     // // if (currentPlayer==="Player 1"){
     //   // setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
     //   // const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
@@ -182,6 +188,7 @@ const Deck = (props) => {
     // //     console.log("no player")
     // //   }
   }
+  console.log(indexOfCard)
 
   const validateValue = (cardToDeposit, receivingCard) => { // Code for validating a legal move
     let depositTempValue;
@@ -232,15 +239,24 @@ const Deck = (props) => {
     setPlayerSelectedCard([])
     setDrawnCard(false)
     setWin(false)
+    setTLKing([{ value: "" }])
+    setTRKing([{ value: "" }])
+    setBRKing([{ value: "" }])
+    setBLKing([{ value: "" }])
   }
+
+  useEffect(()=>{
+
+  }, [indexOfCard, setIndexOfCard, setPlayerSelectedCard])
 
   return (
     <div className='deck-container'>
       <button onClick={() => console.log(deck.length)}>Check Deck</button>
-      <button onClick={startGame}>Start Da Game!</button>
+      {currentPlayer === undefined && <button onClick={startGame}>Start Game!</button>}
       <button onClick={endTurn}>End Turn</button>
       {win === true && <h1>{currentPlayer} WINNER!</h1>}
       {win === true && <button onClick={restartGame}>Restart?</button>}
+      {/* <button onClick={restartGame}>Restart?</button> */}
       <PlayField
         playerSelectedDeck={playerSelectedDeck}
         setPlayerSelectedDeck={setPlayerSelectedDeck}
@@ -258,6 +274,14 @@ const Deck = (props) => {
         setEDeck={setEDeck}
         setSDeck={setSDeck}
         setWDeck={setWDeck}
+        TLKing={TLKing}
+        setTLKing={setTLKing}
+        TRKing={TRKing}
+        setTRKing={setTRKing}
+        BRKing={BRKing}
+        setBRKing={setBRKing}
+        BLKing={BLKing}
+        setBLKing={setBLKing}
       />
       {currentPlayer !== undefined && <p>{currentPlayer}: select a card</p>}
       {playerSelectedCard.length > 0 && <p> {currentPlayer} is moving the <span className='deck-PSC'> {playerSelectedCard[0]?.value} of {playerSelectedCard[0]?.suit} </span></p>}
