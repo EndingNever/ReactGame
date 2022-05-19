@@ -21,11 +21,6 @@ export default function PlayField(props) {
   const setTRKing = props.setTRKing;
   const setBRKing = props.setBRKing;
   const setBLKing = props.setBLKing;
-  // const [TLKing, setTLKing] = useState([{ value: "" }])
-  // const [TRKing, setTRKing] = useState([{ value: "" }])
-  // const [BRKing, setBRKing] = useState([{ value: "" }])
-  // const [BLKing, setBLKing] = useState([{ value: "" }])
-  // const onClickKing = props.onClickKing;
   const checkPlayer = props.checkPlayer;
   const validateValue = props.validateValue;
   const deckDraw = props.deckDraw;
@@ -39,7 +34,7 @@ export default function PlayField(props) {
 
     if (playerSelectedCard.length > 0) {
       if (classListWithDeck.includes('NDeck')) {
-        lastCard = NDeck.length - 1;
+        lastCard = NDeck.length - 1; // Last card of the array
         if (validateValue(playerSelectedCard, NDeck[lastCard]) === true) {
           setNDeck(oldArray => oldArray.concat(playerSelectedCard))
           setPlayerSelectedCard([]);
@@ -88,7 +83,7 @@ export default function PlayField(props) {
           console.log("something went wrong") //?
         }
       }
-    } else { //!!!TODO!!!!
+    } else {
       // let currentDeckClass="NDeck";
       if (data.target.className.includes("NDeck")) { // Allows us to select the NESW Decks, priming it for moving
         setPlayerSelectedDeck(NDeck)

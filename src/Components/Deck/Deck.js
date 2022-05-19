@@ -17,7 +17,6 @@ const Deck = (props) => {
   const [BRKing, setBRKing] = useState([{ value: "" }])
   const [BLKing, setBLKing] = useState([{ value: "" }])
   const [currentPlayer, setCurrentPlayer] = useState()
-  // // const [player1Hand, setPlayer1Hand] = useState([{ value: "K", suit:"diamonds"}, { value: "Q", suit:"diamonds"},{ value: "J", suit:"diamonds"},{ value: "10", suit:"diamonds"},{ value: "9", suit:"diamonds"}]);
   const [player1Hand, setPlayer1Hand] = useState([]);
   const [player2Hand, setPlayer2Hand] = useState([]);
   const [playerSelectedCard, setPlayerSelectedCard] = useState([]);
@@ -154,7 +153,6 @@ const Deck = (props) => {
       } else {
         console.log("No Current Player");
       }
-
     } else {
       console.log(currentPlayer, "Must Draw a Card")
     }
@@ -169,12 +167,12 @@ const Deck = (props) => {
     //  // console.log("Player 2 Hand")
     //  // setCurrentPlayer("Player 2")
     // //}
-    const cardValue = data.target.childNodes[0].data;
-    const cardSuit = data.target.childNodes[2].data;
+    const cardValue = data.target.childNodes[0].data; // This returns the value as a string  "Q" 
+    const cardSuit = data.target.childNodes[2].data; // This returns the suit as a string "Clubs"
     setIndexOfCard(checkPlayer().indexOf(checkPlayer().find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through checkPlayer() and find the location of x.value and x.suit
-    const slice = checkPlayer().slice(indexOfCard, indexOfCard + 1);
+    const slice = checkPlayer().slice(indexOfCard, indexOfCard + 1); // will slice player1Hand or p2Hand at the index of card 
     setPlayerSelectedCard(slice)
-    console.log(data.target.childNodes[0].data)
+    // console.log(data.target.childNodes[0].data)
     // // if (currentPlayer==="Player 1"){
     //   // setIndexOfCard(player1Hand.indexOf(player1Hand.find(x => x.value == cardValue && x.suit == cardSuit))) //this will search through player1Hand and find the location of x.value and x.suit
     //   // const slice = player1Hand.slice(indexOfCard, indexOfCard + 1);
@@ -188,7 +186,6 @@ const Deck = (props) => {
     // //     console.log("no player")
     // //   }
   }
-  console.log(indexOfCard)
 
   const validateValue = (cardToDeposit, receivingCard) => { // Code for validating a legal move
     let depositTempValue;
@@ -244,10 +241,6 @@ const Deck = (props) => {
     setBRKing([{ value: "" }])
     setBLKing([{ value: "" }])
   }
-
-  useEffect(()=>{
-
-  }, [indexOfCard, setIndexOfCard, setPlayerSelectedCard])
 
   return (
     <div className='deck-container'>

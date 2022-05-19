@@ -73,26 +73,26 @@
     margin-right: 220px;
     // position: absolute;
     transform: rotate(125deg);
-    border: 2px solid red;
+    border: 2px solid purple;
   }
   .king-1 {
     // position: absolute;
     margin-bottom: 180px;
     margin-left: 220px;
     transform: rotate(-125deg);
-    border: 2px solid orange;
+    border: 2px solid yellow;
   }
   .king-2 {
     margin-top: 200px;
     margin-left: 200px;
     transform: rotate(-40deg);
-    border: 2px solid purple;
+    border: 2px solid orange;
   }
   .king-3 {
     margin-top: 200px;
     margin-right: 200px;
     transform: rotate(40deg);
-    border: 2px solid yellow;
+    border: 2px solid red;
   }
   .setup-spot {
     background-color: rgba(11, 38, 39, 0.644);
