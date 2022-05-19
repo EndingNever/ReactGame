@@ -1,7 +1,11 @@
 # Kings Corner - A React Card Game
 
 ## Overview
-This is a desktop game built in React and using a whole lot of Javascript. The challenge was to build a playable game where a player can win, lose or tie. Starting the game shuffles the deck and deals 7 cards to each player, as well as 4 foundation cards on the play field. The ranking of cards is K-Q-J-10-9-8-7-6-5-4-3-2-A and they must be placed in this order
+This is a desktop game built in React and using a whole lot of Javascript. The challenge was to build a playable game where a player can win, lose or tie. Starting the game shuffles the deck and deals 7 cards to each player, as well as 4 foundation cards on the play field. 
+
+The ranking of cards is K-Q-J-10-9-8-7-6-5-4-3-2-A
+
+Cards must be placed in this order
 
 ### The Rules
 
@@ -22,15 +26,30 @@ This is a desktop game built in React and using a whole lot of Javascript. The c
 
 ### Screenshots
   Before the game starts, the decks are empty and players have zero cards
+  
 ![pregame](https://user-images.githubusercontent.com/74066431/169392696-0fc2b9b4-9a45-4c9b-b76f-80bba1931af6.png)
   
   Game has started, four foundation cards are laid and players have 7 cards each
+  
 ![gameStart](https://user-images.githubusercontent.com/74066431/169393008-ef519818-da17-4aa6-8b27-6dd528690a44.png)
 
   A valid move could result in an empty foundation. Players may place cards from their own hand on the field
+  
 ![validMoves](https://user-images.githubusercontent.com/74066431/169393518-5e578290-a947-484a-8bd4-359bdf9b3525.png)
   
   Just before a win. Player 1 has zero cards, but could _possibly_ still need to draw from the deck. We see "deck has been drawn" signaling that the player will win when they end their turn. 
+  
 ![prewin](https://user-images.githubusercontent.com/74066431/169393701-cf5a4d73-6639-4b71-980a-d12b96177835.png)
   The player successfully ended their turn, they already drew a card, and they had none left. Player 1 wins!
+  
 ![winner](https://user-images.githubusercontent.com/74066431/169394291-03ccb411-09d4-4598-a236-d1f1223b6f8c.png)
+
+### Built With
+* React
+* React useState Hooks
+* Sass
+* Javascript, especially array manipulation and if-else statements
+
+### Author
+Fabian Villasenor - [LinkedIn](https://www.linkedin.com/in/fabianvillasenor/)
+
