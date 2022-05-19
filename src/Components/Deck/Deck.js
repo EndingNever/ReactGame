@@ -251,6 +251,7 @@ const Deck = (props) => {
       {win === true && <button onClick={restartGame}>Restart?</button>}
       {/* <button onClick={restartGame}>Restart?</button> */}
       <PlayField
+        currentPlayer={currentPlayer}
         playerSelectedDeck={playerSelectedDeck}
         setPlayerSelectedDeck={setPlayerSelectedDeck}
         deckDraw={deckDraw}

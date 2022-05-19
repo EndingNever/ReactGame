@@ -9,6 +9,7 @@
   justify-content: center;
   .starter-card,
   .deck {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,26 +74,22 @@
     margin-right: 220px;
     // position: absolute;
     transform: rotate(125deg);
-    border: 2px solid purple;
   }
   .king-1 {
     // position: absolute;
     margin-bottom: 180px;
     margin-left: 220px;
     transform: rotate(-125deg);
-    border: 2px solid yellow;
   }
   .king-2 {
     margin-top: 200px;
     margin-left: 200px;
     transform: rotate(-40deg);
-    border: 2px solid orange;
   }
   .king-3 {
     margin-top: 200px;
     margin-right: 200px;
     transform: rotate(40deg);
-    border: 2px solid red;
   }
   .setup-spot {
     background-color: rgba(11, 38, 39, 0.644);
@@ -107,5 +104,17 @@
     border: 2px solid green;
     position: relative;
     top: 20px;
+  }
+  .startGame1{
+    border: 2px solid purple;
+  }
+  .startGame2{
+    border: 2px solid yellow;
+  }
+  .startGame3{
+    border: 2px solid orange;
+  }
+  .startGame4{
+    border: 2px solid red;
   }
 }

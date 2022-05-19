@@ -26,6 +26,7 @@ export default function PlayField(props) {
   const deckDraw = props.deckDraw;
   const playerSelectedDeck = props.playerSelectedDeck;
   const setPlayerSelectedDeck = props.setPlayerSelectedDeck;
+  const currentPlayer = props.currentPlayer;
   const [currentDeckClass, setCurrentDeckClass] = useState([]);
 
   const placeCardOnDeck = (data) => { // What happens when someone clicks on a NESW deck
@@ -394,22 +395,22 @@ export default function PlayField(props) {
       <div onClick={deckDraw} className="deck">Deck</div>
 
       {TLKing.map((card, index) => (
-        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-0 TLKing">
+        <div onClick={onClickKing} key={index} className={`starter-card card-king setup-king king-0 TLKing ${currentPlayer!==undefined ? 'startGame1': ""}`}>
           {card.value} {card.suit}
         </div>
       ))}
       {TRKing.map((card, index) => (
-        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-1 TRKing">
+        <div onClick={onClickKing} key={index} className={`starter-card card-king setup-king king-1 TRKing ${currentPlayer!==undefined ? 'startGame2': ""}`}>
           {card.value} {card.suit}
         </div>
       ))}
       {BRKing.map((card, index) => (
-        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-2 BRKing">
+        <div onClick={onClickKing} key={index} className={`starter-card card-king setup-king king-2 BRKing ${currentPlayer!==undefined ? 'startGame3': ""}`}>
           {card.value} {card.suit}
         </div>
       ))}
       {BLKing.map((card, index) => (
-        <div onClick={onClickKing} key={index} className="starter-card card-king setup-king king-3 BLKing">
+        <div onClick={onClickKing} key={index} className={`starter-card card-king setup-king king-3 BLKing ${currentPlayer!==undefined ? 'startGame4': ""}`}>
           {card.value} {card.suit}
         </div>
       ))}
