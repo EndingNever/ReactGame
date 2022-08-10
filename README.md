@@ -1,5 +1,8 @@
 # Kings Corner - A React Card Game
 
+## Author
+Fabian Villasenor - [LinkedIn](https://www.linkedin.com/in/fabianvillasenor/)
+
 ## Overview
 This is a desktop game built in React and using a whole lot of Javascript. The challenge was to build a playable game where a player can win, lose or tie. Starting the game shuffles the deck and deals 7 cards to each player, as well as 4 foundation cards on the play field. 
 
@@ -50,6 +53,4 @@ Cards must be placed in this order
 * Sass
 * Javascript, especially array manipulation and if-else statements
 
-### Author
-Fabian Villasenor - [LinkedIn](https://www.linkedin.com/in/fabianvillasenor/)
 
